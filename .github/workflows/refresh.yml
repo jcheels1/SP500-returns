@@ -1,0 +1,61 @@
+name: Refresh data
+
+on:
+  schedule:
+    - cron: "47 12 * * 1-5"   # 6:47 AM Central (standard time), weekdays
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-data
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install pandas lxml openpyxl requests python-dateutil
+
+      - name: Rebuild constituents and returns
+        run: python scripts/build.py --workdir /tmp/spx --out /tmp/data.json --prev data.json
+
+      - name: Check the build before publishing
+        run: |
+          python - <<'PY'
+          import json, datetime as dt, sys
+          d = json.load(open("/tmp/data.json"))
+          today = dt.date.today()
+          problems = []
+          if not 495 <= d["count"] <= 510: problems.append(f"count {d['count']}")
+          if len(d["price_errors"]) > 5: problems.append(f"{len(d['price_errors'])} price errors")
+          if len(d["unclassified"]) > 5: problems.append(f"{len(d['unclassified'])} unclassified")
+          for k in ("holdings_asof", "price_asof"):
+              if (today - dt.date.fromisoformat(d[k])).days > 6: problems.append(f"{k} stale: {d[k]}")
+          missing = sum(r["r6m"] is None for r in d["rows"])
+          if missing > 15: problems.append(f"{missing} names without a 6M return")
+          if problems:
+              print("Not publishing:", "; ".join(problems)); sys.exit(1)
+          print("OK:", d["count"], "names; holdings", d["holdings_asof"], "; prices", d["price_asof"])
+          if d["changes"] and d["changes"][0]["holdings_asof"] == d["holdings_asof"]:
+              print("Constituent changes:", d["changes"][0])
+          PY
+
+      - name: Commit new data
+        run: |
+          cp /tmp/data.json data.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data.json
+          if git diff --cached --quiet; then echo "No change"; exit 0; fi
+          git commit -m "Refresh data: holdings $(python -c "import json;print(json.load(open('data.json'))['holdings_asof'])")"
+          git push
