@@ -128,6 +128,10 @@ def load_class(workdir):
 # wants grouped differently from the published classification.
 SUB_INDUSTRY_OVERRIDES = {
     "ROP": "Application Software",  # Roper: grouped with software at Joel's request (Nov 2026)
+    # Health Care: match Bloomberg's GICS industry grouping (Nov 2026)
+    "SOLV": "Health Care Supplies",            # Solventum -> Health Care Equipment & Supplies
+    "RVTY": "Life Sciences Tools & Services",  # Revvity -> Life Sciences Tools & Services
+    "WST": "Life Sciences Tools & Services",   # West Pharmaceutical -> Life Sciences Tools & Services
 }
 
 
