@@ -1,0 +1,45 @@
+name: Refresh style weights
+
+on:
+  schedule:
+    - cron: "17 13 * * 1-5"   # 7:17 AM Central (standard time), weekdays; after the returns refresh
+    - cron: "43 23 * * 1-5"   # evening pass in case State Street posts late
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: refresh-style-weights
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: pip install openpyxl
+
+      - name: Rebuild S&P 500 / Value / Growth weights
+        run: python scripts/build_style_weights.py
+
+      - name: Commit if holdings changed
+        run: |
+          strip='import json,sys;d=json.load(sys.stdin);d.pop("generated",None);print(json.dumps(d,sort_keys=True))'
+          old=$(git show HEAD:style-weights/data/holdings.json | python -c "$strip")
+          new=$(python -c "$strip" < style-weights/data/holdings.json)
+          if [ "$old" = "$new" ] && git diff --quiet -- style-weights/data/classification_cache.json; then
+            echo "No holdings change"; exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add style-weights/data
+          git commit -m "Refresh style weights: holdings $(python -c "import json;print(json.load(open('style-weights/data/holdings.json'))['asOf']['sp500'])")"
+          git pull --rebase origin main
+          git push

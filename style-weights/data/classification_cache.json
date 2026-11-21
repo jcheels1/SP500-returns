@@ -1,0 +1,3523 @@
+{
+ "A": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Agilent Technologies",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "AAPL": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Apple Inc.",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "ABBV": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "AbbVie",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "ABNB": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Airbnb",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "ABT": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Abbott Laboratories",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "ACGL": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Arch Capital Group",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "ACN": {
+  "group": "Software & Services",
+  "industry": "IT Services",
+  "name": "Accenture",
+  "sector": "Information Technology",
+  "sub": "IT Consulting & Other Services"
+ },
+ "ADBE": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Adobe Inc.",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "ADI": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Analog Devices",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "ADM": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Archer Daniels Midland",
+  "sector": "Consumer Staples",
+  "sub": "Agricultural Products & Services"
+ },
+ "ADP": {
+  "group": "Commercial & Professional Services",
+  "industry": "Professional Services",
+  "name": "Automatic Data Processing",
+  "sector": "Industrials",
+  "sub": "Human Resource & Employment Services"
+ },
+ "ADSK": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Autodesk",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "AEE": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Ameren",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "AEP": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "American Electric Power",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "AES": {
+  "group": "Utilities",
+  "industry": "Independent Power and Renewable Electricity Producers",
+  "name": "AES Corporation",
+  "sector": "Utilities",
+  "sub": "Independent Power Producers & Energy Traders"
+ },
+ "AFL": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Aflac",
+  "sector": "Financials",
+  "sub": "Life & Health Insurance"
+ },
+ "AIG": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "American International Group",
+  "sector": "Financials",
+  "sub": "Multi-line Insurance"
+ },
+ "AIZ": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Assurant",
+  "sector": "Financials",
+  "sub": "Multi-line Insurance"
+ },
+ "AJG": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Arthur J. Gallagher & Co.",
+  "sector": "Financials",
+  "sub": "Insurance Brokers"
+ },
+ "AKAM": {
+  "group": "Software & Services",
+  "industry": "IT Services",
+  "name": "Akamai Technologies",
+  "sector": "Information Technology",
+  "sub": "Internet Services & Infrastructure"
+ },
+ "ALB": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "Albemarle Corporation",
+  "sector": "Materials",
+  "sub": "Specialty Chemicals"
+ },
+ "ALGN": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Align Technology",
+  "sector": "Health Care",
+  "sub": "Health Care Supplies"
+ },
+ "ALL": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Allstate",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "ALLE": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Allegion",
+  "sector": "Industrials",
+  "sub": "Building Products"
+ },
+ "AMAT": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Applied Materials",
+  "sector": "Information Technology",
+  "sub": "Semiconductor Materials & Equipment"
+ },
+ "AMCR": {
+  "group": "Materials",
+  "industry": "Containers & Packaging",
+  "name": "Amcor",
+  "sector": "Materials",
+  "sub": "Paper & Plastic Packaging Products & Materials"
+ },
+ "AMD": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Advanced Micro Devices",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "AME": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "Ametek",
+  "sector": "Industrials",
+  "sub": "Electrical Components & Equipment"
+ },
+ "AMGN": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Amgen",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "AMP": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Ameriprise Financial",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "AMT": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "American Tower",
+  "sector": "Real Estate",
+  "sub": "Telecom Tower REITs"
+ },
+ "AMZN": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": null,
+  "name": "Amazon",
+  "sector": "Consumer Discretionary",
+  "sub": "Broadline Retail"
+ },
+ "ANET": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Arista Networks",
+  "sector": "Information Technology",
+  "sub": "Communications Equipment"
+ },
+ "AON": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Aon plc",
+  "sector": "Financials",
+  "sub": "Insurance Brokers"
+ },
+ "AOS": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "A. O. Smith",
+  "sector": "Industrials",
+  "sub": "Building Products"
+ },
+ "APA": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "APA Corporation",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "APD": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "Air Products",
+  "sector": "Materials",
+  "sub": "Industrial Gases"
+ },
+ "APH": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Amphenol",
+  "sector": "Information Technology",
+  "sub": "Electronic Components"
+ },
+ "APO": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Apollo Global Management",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "APP": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "AppLovin",
+  "sector": "Communication Services",
+  "sub": "Advertising"
+ },
+ "APTV": {
+  "group": "Automobiles & Components",
+  "industry": "Automobile Components",
+  "name": "Aptiv",
+  "sector": "Consumer Discretionary",
+  "sub": "Automotive Parts & Equipment"
+ },
+ "ARE": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Alexandria Real Estate Equities",
+  "sector": "Real Estate",
+  "sub": "Office REITs"
+ },
+ "ARES": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Ares Management",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "ATO": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Atmos Energy",
+  "sector": "Utilities",
+  "sub": "Gas Utilities"
+ },
+ "AVGO": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Broadcom",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "AVY": {
+  "group": "Materials",
+  "industry": "Containers & Packaging",
+  "name": "Avery Dennison",
+  "sector": "Materials",
+  "sub": "Paper & Plastic Packaging Products & Materials"
+ },
+ "AWK": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "American Water Works",
+  "sector": "Utilities",
+  "sub": "Water Utilities"
+ },
+ "AXON": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Axon Enterprise",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "AXP": {
+  "group": "Financial Services",
+  "industry": null,
+  "name": "American Express",
+  "sector": "Financials",
+  "sub": "Consumer Finance"
+ },
+ "AZO": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "AutoZone",
+  "sector": "Consumer Discretionary",
+  "sub": "Automotive Retail"
+ },
+ "BA": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Boeing",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "BAC": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Bank of America",
+  "sector": "Financials",
+  "sub": "Diversified Banks"
+ },
+ "BALL": {
+  "group": "Materials",
+  "industry": "Containers & Packaging",
+  "name": "Ball Corporation",
+  "sector": "Materials",
+  "sub": "Metal, Glass & Plastic Containers"
+ },
+ "BAX": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Baxter International",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "BBY": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Best Buy",
+  "sector": "Consumer Discretionary",
+  "sub": "Computer & Electronics Retail"
+ },
+ "BDX": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Becton Dickinson",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "BE": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "Bloom Energy",
+  "sector": "Industrials",
+  "sub": "Electrical Components & Equipment"
+ },
+ "BEN": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Franklin Resources",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "BF.B": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Beverages",
+  "name": "Brown\u2013Forman",
+  "sector": "Consumer Staples",
+  "sub": "Distillers & Vintners"
+ },
+ "BG": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Bunge Global",
+  "sector": "Consumer Staples",
+  "sub": "Agricultural Products & Services"
+ },
+ "BIIB": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Biogen",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "BKNG": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Booking Holdings",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "BKR": {
+  "group": "Energy",
+  "industry": "Energy Equipment & Services",
+  "name": "Baker Hughes",
+  "sector": "Energy",
+  "sub": "Oil & Gas Equipment & Services"
+ },
+ "BLK": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "BlackRock",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "BMY": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Bristol Myers Squibb",
+  "sector": "Health Care",
+  "sub": "Pharmaceuticals"
+ },
+ "BNY": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "BNY Mellon",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "BR": {
+  "group": "Commercial & Professional Services",
+  "industry": "Professional Services",
+  "name": "Broadridge Financial Solutions",
+  "sector": "Industrials",
+  "sub": "Data Processing & Outsourced Services"
+ },
+ "BRK.B": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Berkshire Hathaway",
+  "sector": "Financials",
+  "sub": "Multi-Sector Holdings"
+ },
+ "BRO": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Brown & Brown",
+  "sector": "Financials",
+  "sub": "Insurance Brokers"
+ },
+ "BSX": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Boston Scientific",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "BX": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Blackstone Inc.",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "BXP": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "BXP, Inc.",
+  "sector": "Real Estate",
+  "sub": "Office REITs"
+ },
+ "C": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Citigroup",
+  "sector": "Financials",
+  "sub": "Diversified Banks"
+ },
+ "CAH": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Cardinal Health",
+  "sector": "Health Care",
+  "sub": "Health Care Distributors"
+ },
+ "CARR": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Carrier Global",
+  "sector": "Industrials",
+  "sub": "Building Products"
+ },
+ "CASY": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Casey's",
+  "sector": "Consumer Staples",
+  "sub": "Food Retail"
+ },
+ "CAT": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Caterpillar Inc.",
+  "sector": "Industrials",
+  "sub": "Construction Machinery & Heavy Transportation Equipment"
+ },
+ "CB": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Chubb Limited",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "CBOE": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Cboe Global Markets",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "CBRE": {
+  "group": "Real Estate Management & Development",
+  "industry": "Real Estate Management & Development",
+  "name": "CBRE Group",
+  "sector": "Real Estate",
+  "sub": "Real Estate Services"
+ },
+ "CCI": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "Crown Castle",
+  "sector": "Real Estate",
+  "sub": "Telecom Tower REITs"
+ },
+ "CCL": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Carnival Corporation",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "CDNS": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Cadence Design Systems",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "CDW": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "CDW Corporation",
+  "sector": "Information Technology",
+  "sub": "Technology Distributors"
+ },
+ "CEG": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Constellation Energy",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "CF": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "CF Industries",
+  "sector": "Materials",
+  "sub": "Fertilizers & Agricultural Chemicals"
+ },
+ "CFG": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Citizens Financial Group",
+  "sector": "Financials",
+  "sub": "Regional Banks"
+ },
+ "CHD": {
+  "group": "Household & Personal Products",
+  "industry": null,
+  "name": "Church & Dwight",
+  "sector": "Consumer Staples",
+  "sub": "Household Products"
+ },
+ "CHRW": {
+  "group": "Transportation",
+  "industry": null,
+  "name": "C.H. Robinson",
+  "sector": "Industrials",
+  "sub": "Air Freight & Logistics"
+ },
+ "CHTR": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "Charter Communications",
+  "sector": "Communication Services",
+  "sub": "Cable & Satellite"
+ },
+ "CI": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Cigna",
+  "sector": "Health Care",
+  "sub": "Health Care Services"
+ },
+ "CIEN": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Ciena",
+  "sector": "Information Technology",
+  "sub": "Communications Equipment"
+ },
+ "CINF": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Cincinnati Financial",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "CL": {
+  "group": "Household & Personal Products",
+  "industry": null,
+  "name": "Colgate-Palmolive",
+  "sector": "Consumer Staples",
+  "sub": "Household Products"
+ },
+ "CLX": {
+  "group": "Household & Personal Products",
+  "industry": null,
+  "name": "Clorox",
+  "sector": "Consumer Staples",
+  "sub": "Household Products"
+ },
+ "CMCSA": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "Comcast",
+  "sector": "Communication Services",
+  "sub": "Cable & Satellite"
+ },
+ "CME": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "CME Group",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "CMG": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Chipotle Mexican Grill",
+  "sector": "Consumer Discretionary",
+  "sub": "Restaurants"
+ },
+ "CMI": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Cummins",
+  "sector": "Industrials",
+  "sub": "Construction Machinery & Heavy Transportation Equipment"
+ },
+ "CMS": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "CMS Energy",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "CNC": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Centene Corporation",
+  "sector": "Health Care",
+  "sub": "Managed Health Care"
+ },
+ "CNP": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "CenterPoint Energy",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "COF": {
+  "group": "Financial Services",
+  "industry": null,
+  "name": "Capital One",
+  "sector": "Financials",
+  "sub": "Consumer Finance"
+ },
+ "COHR": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Coherent Corp.",
+  "sector": "Information Technology",
+  "sub": "Electronic Components"
+ },
+ "COIN": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Coinbase",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "COO": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Cooper Companies (The)",
+  "sector": "Health Care",
+  "sub": "Health Care Supplies"
+ },
+ "COP": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "ConocoPhillips",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "COR": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Cencora",
+  "sector": "Health Care",
+  "sub": "Health Care Distributors"
+ },
+ "COST": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Costco",
+  "sector": "Consumer Staples",
+  "sub": "Consumer Staples Merchandise Retail"
+ },
+ "CPAY": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Corpay",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "CPRT": {
+  "group": "Commercial & Professional Services",
+  "industry": "Commercial Services & Supplies",
+  "name": "Copart",
+  "sector": "Industrials",
+  "sub": "Diversified Support Services"
+ },
+ "CPT": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Residential REITs",
+  "name": "Camden Property Trust",
+  "sector": "Real Estate",
+  "sub": "Multi-Family Residential REITs"
+ },
+ "CRH": {
+  "group": "Materials",
+  "industry": "Construction Materials",
+  "name": "CRH plc",
+  "sector": "Materials",
+  "sub": "Construction Materials"
+ },
+ "CRL": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Charles River Laboratories",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "CRM": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Salesforce",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "CRWD": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "CrowdStrike",
+  "sector": "Information Technology",
+  "sub": "Systems Software"
+ },
+ "CSCO": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Cisco",
+  "sector": "Information Technology",
+  "sub": "Communications Equipment"
+ },
+ "CSGP": {
+  "group": "Real Estate Management & Development",
+  "industry": "Real Estate Management & Development",
+  "name": "CoStar Group",
+  "sector": "Real Estate",
+  "sub": "Real Estate Services"
+ },
+ "CSX": {
+  "group": "Transportation",
+  "industry": "Ground Transportation",
+  "name": "CSX Corporation",
+  "sector": "Industrials",
+  "sub": "Rail Transportation"
+ },
+ "CTAS": {
+  "group": "Commercial & Professional Services",
+  "industry": "Commercial Services & Supplies",
+  "name": "Cintas",
+  "sector": "Industrials",
+  "sub": "Diversified Support Services"
+ },
+ "CTSH": {
+  "group": "Software & Services",
+  "industry": "IT Services",
+  "name": "Cognizant",
+  "sector": "Information Technology",
+  "sub": "IT Consulting & Other Services"
+ },
+ "CVNA": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Carvana",
+  "sector": "Consumer Discretionary",
+  "sub": "Automotive Retail"
+ },
+ "CVS": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "CVS Health",
+  "sector": "Health Care",
+  "sub": "Health Care Services"
+ },
+ "CVX": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Chevron Corporation",
+  "sector": "Energy",
+  "sub": "Integrated Oil & Gas"
+ },
+ "D": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Dominion Energy",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "DAL": {
+  "group": "Transportation",
+  "industry": null,
+  "name": "Delta Air Lines",
+  "sector": "Industrials",
+  "sub": "Passenger Airlines"
+ },
+ "DASH": {
+  "group": "Consumer Services",
+  "industry": "Diversified Consumer Services",
+  "name": "DoorDash",
+  "sector": "Consumer Discretionary",
+  "sub": "Specialized Consumer Services"
+ },
+ "DD": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "DuPont",
+  "sector": "Industrials",
+  "sub": "Industrial Conglomerates"
+ },
+ "DDOG": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Datadog",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "DE": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Deere & Company",
+  "sector": "Industrials",
+  "sub": "Agricultural & Farm Machinery"
+ },
+ "DECK": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Textiles, Apparel & Luxury Goods",
+  "name": "Deckers Brands",
+  "sector": "Consumer Discretionary",
+  "sub": "Footwear"
+ },
+ "DELL": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Dell Technologies",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "DG": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Dollar General",
+  "sector": "Consumer Staples",
+  "sub": "Consumer Staples Merchandise Retail"
+ },
+ "DGX": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Quest Diagnostics",
+  "sector": "Health Care",
+  "sub": "Health Care Services"
+ },
+ "DHI": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Household Durables",
+  "name": "D. R. Horton",
+  "sector": "Consumer Discretionary",
+  "sub": "Homebuilding"
+ },
+ "DHR": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Danaher Corporation",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "DIS": {
+  "group": "Media & Entertainment",
+  "industry": "Entertainment",
+  "name": "Walt Disney Company (The)",
+  "sector": "Communication Services",
+  "sub": "Movies & Entertainment"
+ },
+ "DLR": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "Digital Realty",
+  "sector": "Real Estate",
+  "sub": "Data Center REITs"
+ },
+ "DLTR": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Dollar Tree",
+  "sector": "Consumer Staples",
+  "sub": "Consumer Staples Merchandise Retail"
+ },
+ "DOC": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Healthpeak Properties",
+  "sector": "Real Estate",
+  "sub": "Health Care REITs"
+ },
+ "DOV": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Dover Corporation",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "DOW": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "Dow Inc.",
+  "sector": "Materials",
+  "sub": "Commodity Chemicals"
+ },
+ "DPZ": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Domino's",
+  "sector": "Consumer Discretionary",
+  "sub": "Restaurants"
+ },
+ "DRI": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Darden Restaurants",
+  "sector": "Consumer Discretionary",
+  "sub": "Restaurants"
+ },
+ "DTE": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "DTE Energy",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "DUK": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Duke Energy",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "DVA": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "DaVita",
+  "sector": "Health Care",
+  "sub": "Health Care Services"
+ },
+ "DVN": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Devon Energy",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "DXCM": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Dexcom",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "EBAY": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": null,
+  "name": "eBay Inc.",
+  "sector": "Consumer Discretionary",
+  "sub": "Broadline Retail"
+ },
+ "ECHO": {
+  "group": "Telecommunication Services",
+  "industry": null,
+  "name": "EchoStar",
+  "sector": "Communication Services",
+  "sub": "Wireless Telecommunication Services"
+ },
+ "ECL": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "Ecolab",
+  "sector": "Materials",
+  "sub": "Specialty Chemicals"
+ },
+ "ED": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Consolidated Edison",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "EFX": {
+  "group": "Commercial & Professional Services",
+  "industry": "Professional Services",
+  "name": "Equifax",
+  "sector": "Industrials",
+  "sub": "Research & Consulting Services"
+ },
+ "EG": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Everest Group",
+  "sector": "Financials",
+  "sub": "Reinsurance"
+ },
+ "EIX": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Edison International",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "EL": {
+  "group": "Household & Personal Products",
+  "industry": null,
+  "name": "Est\u00e9e Lauder Companies (The)",
+  "sector": "Consumer Staples",
+  "sub": "Personal Care Products"
+ },
+ "ELV": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Elevance Health",
+  "sector": "Health Care",
+  "sub": "Managed Health Care"
+ },
+ "EME": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Emcor",
+  "sector": "Industrials",
+  "sub": "Construction & Engineering"
+ },
+ "EMR": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "Emerson Electric",
+  "sector": "Industrials",
+  "sub": "Electrical Components & Equipment"
+ },
+ "EOG": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "EOG Resources",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "EQIX": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "Equinix",
+  "sector": "Real Estate",
+  "sub": "Data Center REITs"
+ },
+ "EQT": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "EQT Corporation",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "ERIE": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Erie Indemnity",
+  "sector": "Financials",
+  "sub": "Insurance Brokers"
+ },
+ "ES": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Eversource Energy",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "ESS": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Residential REITs",
+  "name": "Essex Property Trust",
+  "sector": "Real Estate",
+  "sub": "Multi-Family Residential REITs"
+ },
+ "ETN": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "Eaton Corporation",
+  "sector": "Industrials",
+  "sub": "Electrical Components & Equipment"
+ },
+ "ETR": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Entergy",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "EVRG": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Evergy",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "EW": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Edwards Lifesciences",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "EXC": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Exelon",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "EXE": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Expand Energy",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "EXPD": {
+  "group": "Transportation",
+  "industry": null,
+  "name": "Expeditors International",
+  "sector": "Industrials",
+  "sub": "Air Freight & Logistics"
+ },
+ "EXPE": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Expedia Group",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "EXR": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "Extra Space Storage",
+  "sector": "Real Estate",
+  "sub": "Self-Storage REITs"
+ },
+ "F": {
+  "group": "Automobiles & Components",
+  "industry": "Automobiles",
+  "name": "Ford Motor Company",
+  "sector": "Consumer Discretionary",
+  "sub": "Automobile Manufacturers"
+ },
+ "FANG": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Diamondback Energy",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "FAST": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Fastenal",
+  "sector": "Industrials",
+  "sub": "Trading Companies & Distributors"
+ },
+ "FCX": {
+  "group": "Materials",
+  "industry": "Metals & Mining",
+  "name": "Freeport-McMoRan",
+  "sector": "Materials",
+  "sub": "Copper"
+ },
+ "FDS": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "FactSet",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "FDX": {
+  "group": "Transportation",
+  "industry": null,
+  "name": "FedEx",
+  "sector": "Industrials",
+  "sub": "Air Freight & Logistics"
+ },
+ "FDXF": {
+  "group": "Transportation",
+  "industry": "Ground Transportation",
+  "name": "FedEx Freight",
+  "sector": "Industrials",
+  "sub": "Cargo Ground Transportation"
+ },
+ "FE": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "FirstEnergy",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "FERG": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Ferguson Enterprises",
+  "sector": "Industrials",
+  "sub": "Trading Companies & Distributors"
+ },
+ "FFIV": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "F5, Inc.",
+  "sector": "Information Technology",
+  "sub": "Communications Equipment"
+ },
+ "FICO": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Fair Isaac",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "FIS": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Fidelity National Information Services",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "FISV": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Fiserv",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "FITB": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Fifth Third Bancorp",
+  "sector": "Financials",
+  "sub": "Regional Banks"
+ },
+ "FIX": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Comfort Systems USA",
+  "sector": "Industrials",
+  "sub": "Construction & Engineering"
+ },
+ "FLEX": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Flex Ltd.",
+  "sector": "Information Technology",
+  "sub": "Electronic Manufacturing Services"
+ },
+ "FOX": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "Fox Corporation (Class B)",
+  "sector": "Communication Services",
+  "sub": "Broadcasting"
+ },
+ "FOXA": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "Fox Corporation (Class A)",
+  "sector": "Communication Services",
+  "sub": "Broadcasting"
+ },
+ "FRT": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Federal Realty Investment Trust",
+  "sector": "Real Estate",
+  "sub": "Retail REITs"
+ },
+ "FSLR": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "First Solar",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "FTNT": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Fortinet",
+  "sector": "Information Technology",
+  "sub": "Systems Software"
+ },
+ "FTV": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Fortive",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "GD": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "General Dynamics",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "GDDY": {
+  "group": "Software & Services",
+  "industry": "IT Services",
+  "name": "GoDaddy",
+  "sector": "Information Technology",
+  "sub": "Internet Services & Infrastructure"
+ },
+ "GE": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "GE Aerospace",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "GEHC": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "GE HealthCare",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "GEN": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Gen Digital",
+  "sector": "Information Technology",
+  "sub": "Systems Software"
+ },
+ "GEV": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "GE Vernova",
+  "sector": "Industrials",
+  "sub": "Heavy Electrical Equipment"
+ },
+ "GILD": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Gilead Sciences",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "GIS": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "General Mills",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "GL": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Globe Life",
+  "sector": "Financials",
+  "sub": "Life & Health Insurance"
+ },
+ "GLW": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Corning Inc.",
+  "sector": "Information Technology",
+  "sub": "Electronic Components"
+ },
+ "GM": {
+  "group": "Automobiles & Components",
+  "industry": "Automobiles",
+  "name": "General Motors",
+  "sector": "Consumer Discretionary",
+  "sub": "Automobile Manufacturers"
+ },
+ "GNRC": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "Generac",
+  "sector": "Industrials",
+  "sub": "Heavy Electrical Equipment"
+ },
+ "GOOG": {
+  "group": "Media & Entertainment",
+  "industry": null,
+  "name": "Alphabet Inc. (Class C)",
+  "sector": "Communication Services",
+  "sub": "Interactive Media & Services"
+ },
+ "GOOGL": {
+  "group": "Media & Entertainment",
+  "industry": null,
+  "name": "Alphabet Inc. (Class A)",
+  "sector": "Communication Services",
+  "sub": "Interactive Media & Services"
+ },
+ "GPC": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": null,
+  "name": "Genuine Parts Company",
+  "sector": "Consumer Discretionary",
+  "sub": "Distributors"
+ },
+ "GPN": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Global Payments",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "GRMN": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Household Durables",
+  "name": "Garmin",
+  "sector": "Consumer Discretionary",
+  "sub": "Consumer Electronics"
+ },
+ "GS": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Goldman Sachs",
+  "sector": "Financials",
+  "sub": "Investment Banking & Brokerage"
+ },
+ "GWW": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "W. W. Grainger",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "HAL": {
+  "group": "Energy",
+  "industry": "Energy Equipment & Services",
+  "name": "Halliburton",
+  "sector": "Energy",
+  "sub": "Oil & Gas Equipment & Services"
+ },
+ "HAS": {
+  "group": "Consumer Durables & Apparel",
+  "industry": null,
+  "name": "Hasbro",
+  "sector": "Consumer Discretionary",
+  "sub": "Leisure Products"
+ },
+ "HBAN": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Huntington Bancshares",
+  "sector": "Financials",
+  "sub": "Regional Banks"
+ },
+ "HCA": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "HCA Healthcare",
+  "sector": "Health Care",
+  "sub": "Health Care Facilities"
+ },
+ "HD": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Home Depot (The)",
+  "sector": "Consumer Discretionary",
+  "sub": "Home Improvement Retail"
+ },
+ "HIG": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Hartford (The)",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "HII": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Huntington Ingalls Industries",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "HLT": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Hilton Worldwide",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "HON": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Honeywell Technologies",
+  "sector": "Industrials",
+  "sub": "Industrial Conglomerates"
+ },
+ "HONA": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Honeywell Aerospace",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "HOOD": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Robinhood Markets",
+  "sector": "Financials",
+  "sub": "Investment Banking & Brokerage"
+ },
+ "HPE": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Hewlett Packard Enterprise",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "HPQ": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "HP Inc.",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "HRL": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Hormel Foods",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "HSIC": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Henry Schein",
+  "sector": "Health Care",
+  "sub": "Health Care Distributors"
+ },
+ "HST": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Host Hotels & Resorts",
+  "sector": "Real Estate",
+  "sub": "Hotel & Resort REITs"
+ },
+ "HSY": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Hershey Company (The)",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "HUBB": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Hubbell Incorporated",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "HUM": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Humana",
+  "sector": "Health Care",
+  "sub": "Managed Health Care"
+ },
+ "HWM": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Howmet Aerospace",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "IBKR": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Interactive Brokers",
+  "sector": "Financials",
+  "sub": "Investment Banking & Brokerage"
+ },
+ "IBM": {
+  "group": "Software & Services",
+  "industry": "IT Services",
+  "name": "IBM",
+  "sector": "Information Technology",
+  "sub": "IT Consulting & Other Services"
+ },
+ "ICE": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Intercontinental Exchange",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "IDXX": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Idexx Laboratories",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "IEX": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "IDEX Corporation",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "IFF": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "International Flavors & Fragrances",
+  "sector": "Materials",
+  "sub": "Specialty Chemicals"
+ },
+ "ILMN": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Illumina, Inc.",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "INCY": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Incyte",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "INTC": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Intel",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "INTU": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Intuit",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "INVH": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Residential REITs",
+  "name": "Invitation Homes",
+  "sector": "Real Estate",
+  "sub": "Single-Family Residential REITs"
+ },
+ "IP": {
+  "group": "Materials",
+  "industry": "Containers & Packaging",
+  "name": "International Paper",
+  "sector": "Materials",
+  "sub": "Paper & Plastic Packaging Products & Materials"
+ },
+ "IQV": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "IQVIA",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "IR": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Ingersoll Rand",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "IRM": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "Iron Mountain",
+  "sector": "Real Estate",
+  "sub": "Other Specialized REITs"
+ },
+ "ISRG": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Intuitive Surgical",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "IT": {
+  "group": "Software & Services",
+  "industry": "IT Services",
+  "name": "Gartner",
+  "sector": "Information Technology",
+  "sub": "IT Consulting & Other Services"
+ },
+ "ITW": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Illinois Tool Works",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "IVZ": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Invesco",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "J": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Jacobs Solutions",
+  "sector": "Industrials",
+  "sub": "Construction & Engineering"
+ },
+ "JBHT": {
+  "group": "Transportation",
+  "industry": "Ground Transportation",
+  "name": "J.B. Hunt",
+  "sector": "Industrials",
+  "sub": "Cargo Ground Transportation"
+ },
+ "JBL": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Jabil",
+  "sector": "Information Technology",
+  "sub": "Electronic Manufacturing Services"
+ },
+ "JCI": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Johnson Controls",
+  "sector": "Industrials",
+  "sub": "Building Products"
+ },
+ "JKHY": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Jack Henry & Associates",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "JNJ": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Johnson & Johnson",
+  "sector": "Health Care",
+  "sub": "Pharmaceuticals"
+ },
+ "JPM": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "JPMorgan Chase",
+  "sector": "Financials",
+  "sub": "Diversified Banks"
+ },
+ "KDP": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Beverages",
+  "name": "Keurig Dr Pepper",
+  "sector": "Consumer Staples",
+  "sub": "Soft Drinks & Non-alcoholic Beverages"
+ },
+ "KEY": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "KeyCorp",
+  "sector": "Financials",
+  "sub": "Regional Banks"
+ },
+ "KEYS": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Keysight Technologies",
+  "sector": "Information Technology",
+  "sub": "Electronic Equipment & Instruments"
+ },
+ "KHC": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Kraft Heinz",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "KIM": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Kimco Realty",
+  "sector": "Real Estate",
+  "sub": "Retail REITs"
+ },
+ "KKR": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "KKR & Co.",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "KLAC": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "KLA Corporation",
+  "sector": "Information Technology",
+  "sub": "Semiconductor Materials & Equipment"
+ },
+ "KMB": {
+  "group": "Household & Personal Products",
+  "industry": null,
+  "name": "Kimberly-Clark",
+  "sector": "Consumer Staples",
+  "sub": "Household Products"
+ },
+ "KMI": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Kinder Morgan",
+  "sector": "Energy",
+  "sub": "Oil & Gas Storage & Transportation"
+ },
+ "KO": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Beverages",
+  "name": "Coca-Cola Company (The)",
+  "sector": "Consumer Staples",
+  "sub": "Soft Drinks & Non-alcoholic Beverages"
+ },
+ "KR": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Kroger",
+  "sector": "Consumer Staples",
+  "sub": "Food Retail"
+ },
+ "L": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Loews Corporation",
+  "sector": "Financials",
+  "sub": "Multi-line Insurance"
+ },
+ "LDOS": {
+  "group": "Commercial & Professional Services",
+  "industry": "Commercial Services & Supplies",
+  "name": "Leidos",
+  "sector": "Industrials",
+  "sub": "Diversified Support Services"
+ },
+ "LEN": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Household Durables",
+  "name": "Lennar",
+  "sector": "Consumer Discretionary",
+  "sub": "Homebuilding"
+ },
+ "LH": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Labcorp",
+  "sector": "Health Care",
+  "sub": "Health Care Services"
+ },
+ "LHX": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "L3Harris",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "LII": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Lennox International",
+  "sector": "Industrials",
+  "sub": "Building Products"
+ },
+ "LIN": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "Linde plc",
+  "sector": "Materials",
+  "sub": "Industrial Gases"
+ },
+ "LITE": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Lumentum",
+  "sector": "Information Technology",
+  "sub": "Communications Equipment"
+ },
+ "LLY": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Lilly (Eli)",
+  "sector": "Health Care",
+  "sub": "Pharmaceuticals"
+ },
+ "LMT": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Lockheed Martin",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "LNT": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Alliant Energy",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "LOW": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Lowe's",
+  "sector": "Consumer Discretionary",
+  "sub": "Home Improvement Retail"
+ },
+ "LRCX": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Lam Research",
+  "sector": "Information Technology",
+  "sub": "Semiconductor Materials & Equipment"
+ },
+ "LULU": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Textiles, Apparel & Luxury Goods",
+  "name": "Lululemon Athletica",
+  "sector": "Consumer Discretionary",
+  "sub": "Apparel, Accessories & Luxury Goods"
+ },
+ "LUV": {
+  "group": "Transportation",
+  "industry": null,
+  "name": "Southwest Airlines",
+  "sector": "Industrials",
+  "sub": "Passenger Airlines"
+ },
+ "LVS": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Las Vegas Sands",
+  "sector": "Consumer Discretionary",
+  "sub": "Casinos & Gaming"
+ },
+ "LYB": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "LyondellBasell",
+  "sector": "Materials",
+  "sub": "Specialty Chemicals"
+ },
+ "LYV": {
+  "group": "Media & Entertainment",
+  "industry": "Entertainment",
+  "name": "Live Nation Entertainment",
+  "sector": "Communication Services",
+  "sub": "Movies & Entertainment"
+ },
+ "MA": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Mastercard",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "MAA": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Residential REITs",
+  "name": "Mid-America Apartment Communities",
+  "sector": "Real Estate",
+  "sub": "Multi-Family Residential REITs"
+ },
+ "MAR": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Marriott International",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "MAS": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Masco",
+  "sector": "Industrials",
+  "sub": "Building Products"
+ },
+ "MCD": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "McDonald's",
+  "sector": "Consumer Discretionary",
+  "sub": "Restaurants"
+ },
+ "MCHP": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Microchip Technology",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "MCK": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "McKesson",
+  "sector": "Health Care",
+  "sub": "Health Care Distributors"
+ },
+ "MCO": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Moody's Corporation",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "MDLZ": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Mondelez International",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "MDT": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Medtronic",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "MET": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "MetLife",
+  "sector": "Financials",
+  "sub": "Life & Health Insurance"
+ },
+ "META": {
+  "group": "Media & Entertainment",
+  "industry": null,
+  "name": "Meta Platforms",
+  "sector": "Communication Services",
+  "sub": "Interactive Media & Services"
+ },
+ "MGM": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "MGM Resorts",
+  "sector": "Consumer Discretionary",
+  "sub": "Casinos & Gaming"
+ },
+ "MKC": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "McCormick & Company",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "MLM": {
+  "group": "Materials",
+  "industry": "Construction Materials",
+  "name": "Martin Marietta Materials",
+  "sector": "Materials",
+  "sub": "Construction Materials"
+ },
+ "MMM": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "3M",
+  "sector": "Industrials",
+  "sub": "Industrial Conglomerates"
+ },
+ "MNST": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Beverages",
+  "name": "Monster Beverage",
+  "sector": "Consumer Staples",
+  "sub": "Soft Drinks & Non-alcoholic Beverages"
+ },
+ "MO": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": null,
+  "name": "Altria",
+  "sector": "Consumer Staples",
+  "sub": "Tobacco"
+ },
+ "MOS": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "Mosaic Company (The)",
+  "sector": "Materials",
+  "sub": "Fertilizers & Agricultural Chemicals"
+ },
+ "MPC": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Marathon Petroleum",
+  "sector": "Energy",
+  "sub": "Oil & Gas Refining & Marketing"
+ },
+ "MPWR": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Monolithic Power Systems",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "MRK": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Merck & Co.",
+  "sector": "Health Care",
+  "sub": "Pharmaceuticals"
+ },
+ "MRNA": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Moderna",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "MRSH": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Marsh McLennan",
+  "sector": "Financials",
+  "sub": "Insurance Brokers"
+ },
+ "MRVL": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Marvell Technology",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "MS": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Morgan Stanley",
+  "sector": "Financials",
+  "sub": "Investment Banking & Brokerage"
+ },
+ "MSCI": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "MSCI",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "MSFT": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Microsoft",
+  "sector": "Information Technology",
+  "sub": "Systems Software"
+ },
+ "MSI": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Motorola Solutions",
+  "sector": "Information Technology",
+  "sub": "Communications Equipment"
+ },
+ "MTB": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "M&T Bank",
+  "sector": "Financials",
+  "sub": "Regional Banks"
+ },
+ "MTD": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Mettler Toledo",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "MU": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Micron Technology",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "NCLH": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Norwegian Cruise Line Holdings",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "NDAQ": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Nasdaq, Inc.",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "NDSN": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Nordson Corporation",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "NEE": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "NextEra Energy",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "NEM": {
+  "group": "Materials",
+  "industry": "Metals & Mining",
+  "name": "Newmont",
+  "sector": "Materials",
+  "sub": "Gold"
+ },
+ "NFLX": {
+  "group": "Media & Entertainment",
+  "industry": "Entertainment",
+  "name": "Netflix",
+  "sector": "Communication Services",
+  "sub": "Movies & Entertainment"
+ },
+ "NI": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "NiSource",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "NKE": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Textiles, Apparel & Luxury Goods",
+  "name": "Nike, Inc.",
+  "sector": "Consumer Discretionary",
+  "sub": "Apparel, Accessories & Luxury Goods"
+ },
+ "NOC": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Northrop Grumman",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "NOW": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "ServiceNow",
+  "sector": "Information Technology",
+  "sub": "Systems Software"
+ },
+ "NRG": {
+  "group": "Utilities",
+  "industry": "Independent Power and Renewable Electricity Producers",
+  "name": "NRG Energy",
+  "sector": "Utilities",
+  "sub": "Independent Power Producers & Energy Traders"
+ },
+ "NSC": {
+  "group": "Transportation",
+  "industry": "Ground Transportation",
+  "name": "Norfolk Southern",
+  "sector": "Industrials",
+  "sub": "Rail Transportation"
+ },
+ "NTAP": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "NetApp",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "NTRS": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Northern Trust",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "NUE": {
+  "group": "Materials",
+  "industry": "Metals & Mining",
+  "name": "Nucor",
+  "sector": "Materials",
+  "sub": "Steel"
+ },
+ "NVDA": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Nvidia",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "NVR": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Household Durables",
+  "name": "NVR, Inc.",
+  "sector": "Consumer Discretionary",
+  "sub": "Homebuilding"
+ },
+ "NWS": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "News Corp (Class B)",
+  "sector": "Communication Services",
+  "sub": "Publishing"
+ },
+ "NWSA": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "News Corp (Class A)",
+  "sector": "Communication Services",
+  "sub": "Publishing"
+ },
+ "NXPI": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "NXP Semiconductors",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "O": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Realty Income",
+  "sector": "Real Estate",
+  "sub": "Retail REITs"
+ },
+ "ODFL": {
+  "group": "Transportation",
+  "industry": "Ground Transportation",
+  "name": "Old Dominion",
+  "sector": "Industrials",
+  "sub": "Cargo Ground Transportation"
+ },
+ "OKE": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Oneok",
+  "sector": "Energy",
+  "sub": "Oil & Gas Storage & Transportation"
+ },
+ "OKTA": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Okta, Inc.",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "OMC": {
+  "group": "Media & Entertainment",
+  "industry": "Media",
+  "name": "Omnicom Group",
+  "sector": "Communication Services",
+  "sub": "Advertising"
+ },
+ "ON": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "ON Semiconductor",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "ORCL": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Oracle Corporation",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "ORLY": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "O'Reilly Automotive",
+  "sector": "Consumer Discretionary",
+  "sub": "Automotive Retail"
+ },
+ "OTIS": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Otis Worldwide",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "OXY": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Occidental Petroleum",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "P": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Everpure",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "PANW": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Palo Alto Networks",
+  "sector": "Information Technology",
+  "sub": "Systems Software"
+ },
+ "PAYX": {
+  "group": "Commercial & Professional Services",
+  "industry": "Professional Services",
+  "name": "Paychex",
+  "sector": "Industrials",
+  "sub": "Human Resource & Employment Services"
+ },
+ "PCAR": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Paccar",
+  "sector": "Industrials",
+  "sub": "Construction Machinery & Heavy Transportation Equipment"
+ },
+ "PCG": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "PG&E Corporation",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "PEG": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Public Service Enterprise Group",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "PEP": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Beverages",
+  "name": "PepsiCo",
+  "sector": "Consumer Staples",
+  "sub": "Soft Drinks & Non-alcoholic Beverages"
+ },
+ "PFE": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Pfizer",
+  "sector": "Health Care",
+  "sub": "Pharmaceuticals"
+ },
+ "PFG": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Principal Financial Group",
+  "sector": "Financials",
+  "sub": "Life & Health Insurance"
+ },
+ "PG": {
+  "group": "Household & Personal Products",
+  "industry": null,
+  "name": "Procter & Gamble",
+  "sector": "Consumer Staples",
+  "sub": "Personal Care Products"
+ },
+ "PGR": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Progressive Corporation",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "PH": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Parker Hannifin",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "PHM": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Household Durables",
+  "name": "PulteGroup",
+  "sector": "Consumer Discretionary",
+  "sub": "Homebuilding"
+ },
+ "PKG": {
+  "group": "Materials",
+  "industry": "Containers & Packaging",
+  "name": "Packaging Corporation of America",
+  "sector": "Materials",
+  "sub": "Paper & Plastic Packaging Products & Materials"
+ },
+ "PLD": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Prologis",
+  "sector": "Real Estate",
+  "sub": "Industrial REITs"
+ },
+ "PLTR": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Palantir Technologies",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "PM": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": null,
+  "name": "Philip Morris International",
+  "sector": "Consumer Staples",
+  "sub": "Tobacco"
+ },
+ "PNC": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "PNC Financial Services",
+  "sector": "Financials",
+  "sub": "Diversified Banks"
+ },
+ "PNR": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Pentair",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "PNW": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Pinnacle West Capital",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "PODD": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Insulet Corporation",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "PPG": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "PPG Industries",
+  "sector": "Materials",
+  "sub": "Specialty Chemicals"
+ },
+ "PPL": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "PPL Corporation",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "PRU": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Prudential Financial",
+  "sector": "Financials",
+  "sub": "Life & Health Insurance"
+ },
+ "PSA": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "Public Storage",
+  "sector": "Real Estate",
+  "sub": "Self-Storage REITs"
+ },
+ "PSX": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Phillips 66",
+  "sector": "Energy",
+  "sub": "Oil & Gas Refining & Marketing"
+ },
+ "PTC": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "PTC Inc.",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "PWR": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Quanta Services",
+  "sector": "Industrials",
+  "sub": "Construction & Engineering"
+ },
+ "PYPL": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "PayPal",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "Q": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Qnity Electronics",
+  "sector": "Information Technology",
+  "sub": "Semiconductor Materials & Equipment"
+ },
+ "QCOM": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Qualcomm",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "RCL": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Royal Caribbean Group",
+  "sector": "Consumer Discretionary",
+  "sub": "Hotels, Resorts & Cruise Lines"
+ },
+ "RDDT": {
+  "group": "Media & Entertainment",
+  "industry": null,
+  "name": "Reddit",
+  "sector": "Communication Services",
+  "sub": "Interactive Media & Services"
+ },
+ "REG": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Regency Centers",
+  "sector": "Real Estate",
+  "sub": "Retail REITs"
+ },
+ "REGN": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Regeneron Pharmaceuticals",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "RF": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Regions Financial Corporation",
+  "sector": "Financials",
+  "sub": "Regional Banks"
+ },
+ "RJF": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Raymond James Financial",
+  "sector": "Financials",
+  "sub": "Investment Banking & Brokerage"
+ },
+ "RL": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Textiles, Apparel & Luxury Goods",
+  "name": "Ralph Lauren Corporation",
+  "sector": "Consumer Discretionary",
+  "sub": "Apparel, Accessories & Luxury Goods"
+ },
+ "RMD": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "ResMed",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "ROK": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "Rockwell Automation",
+  "sector": "Industrials",
+  "sub": "Electrical Components & Equipment"
+ },
+ "ROL": {
+  "group": "Commercial & Professional Services",
+  "industry": "Commercial Services & Supplies",
+  "name": "Rollins, Inc.",
+  "sector": "Industrials",
+  "sub": "Environmental & Facilities Services"
+ },
+ "ROP": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Roper Technologies",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "ROST": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Ross Stores",
+  "sector": "Consumer Discretionary",
+  "sub": "Apparel Retail"
+ },
+ "RSG": {
+  "group": "Commercial & Professional Services",
+  "industry": "Commercial Services & Supplies",
+  "name": "Republic Services",
+  "sector": "Industrials",
+  "sub": "Environmental & Facilities Services"
+ },
+ "RTX": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "RTX Corporation",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "RVTY": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Revvity",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "SBAC": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "SBA Communications",
+  "sector": "Real Estate",
+  "sub": "Telecom Tower REITs"
+ },
+ "SBUX": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Starbucks",
+  "sector": "Consumer Discretionary",
+  "sub": "Restaurants"
+ },
+ "SCHW": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "Charles Schwab Corporation",
+  "sector": "Financials",
+  "sub": "Investment Banking & Brokerage"
+ },
+ "SHW": {
+  "group": "Materials",
+  "industry": "Chemicals",
+  "name": "Sherwin-Williams",
+  "sector": "Materials",
+  "sub": "Specialty Chemicals"
+ },
+ "SJM": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "J.M. Smucker Company (The)",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "SKYD": {
+  "group": "Media & Entertainment",
+  "industry": "Entertainment",
+  "name": "Skydance",
+  "sector": "Communication Services",
+  "sub": "Movies & Entertainment"
+ },
+ "SLB": {
+  "group": "Energy",
+  "industry": "Energy Equipment & Services",
+  "name": "Schlumberger",
+  "sector": "Energy",
+  "sub": "Oil & Gas Equipment & Services"
+ },
+ "SMCI": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Supermicro",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "SNA": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Snap-on",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "SNDK": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Sandisk",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "SNPS": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Synopsys",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "SO": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Southern Company",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "SOLV": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Solventum",
+  "sector": "Health Care",
+  "sub": "Health Care Supplies"
+ },
+ "SPG": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Simon Property Group",
+  "sector": "Real Estate",
+  "sub": "Retail REITs"
+ },
+ "SPGI": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "S&P Global",
+  "sector": "Financials",
+  "sub": "Financial Exchanges & Data"
+ },
+ "SRE": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Sempra",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "STE": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Steris",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "STLD": {
+  "group": "Materials",
+  "industry": "Metals & Mining",
+  "name": "Steel Dynamics",
+  "sector": "Materials",
+  "sub": "Steel"
+ },
+ "STT": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "State Street Corporation",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "STX": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Seagate Technology",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "STZ": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Beverages",
+  "name": "Constellation Brands",
+  "sector": "Consumer Staples",
+  "sub": "Distillers & Vintners"
+ },
+ "SW": {
+  "group": "Materials",
+  "industry": "Containers & Packaging",
+  "name": "Smurfit Westrock",
+  "sector": "Materials",
+  "sub": "Paper & Plastic Packaging Products & Materials"
+ },
+ "SWK": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Stanley Black & Decker",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "SWKS": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Skyworks Solutions",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "SYF": {
+  "group": "Financial Services",
+  "industry": null,
+  "name": "Synchrony Financial",
+  "sector": "Financials",
+  "sub": "Consumer Finance"
+ },
+ "SYK": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Stryker Corporation",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "SYY": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Sysco",
+  "sector": "Consumer Staples",
+  "sub": "Food Distributors"
+ },
+ "T": {
+  "group": "Telecommunication Services",
+  "industry": "Diversified Telecommunication Services",
+  "name": "AT&T",
+  "sector": "Communication Services",
+  "sub": "Integrated Telecommunication Services"
+ },
+ "TDG": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "TransDigm Group",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "TDY": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Teledyne Technologies",
+  "sector": "Information Technology",
+  "sub": "Electronic Equipment & Instruments"
+ },
+ "TECH": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Bio-Techne",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "TEL": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "TE Connectivity",
+  "sector": "Information Technology",
+  "sub": "Electronic Manufacturing Services"
+ },
+ "TER": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Teradyne",
+  "sector": "Information Technology",
+  "sub": "Semiconductor Materials & Equipment"
+ },
+ "TFC": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Truist Financial",
+  "sector": "Financials",
+  "sub": "Diversified Banks"
+ },
+ "TGT": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Target Corporation",
+  "sector": "Consumer Staples",
+  "sub": "Consumer Staples Merchandise Retail"
+ },
+ "TJX": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "TJX Companies",
+  "sector": "Consumer Discretionary",
+  "sub": "Apparel Retail"
+ },
+ "TKO": {
+  "group": "Media & Entertainment",
+  "industry": "Entertainment",
+  "name": "TKO Group Holdings",
+  "sector": "Communication Services",
+  "sub": "Movies & Entertainment"
+ },
+ "TMO": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Thermo Fisher Scientific",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "TMUS": {
+  "group": "Telecommunication Services",
+  "industry": null,
+  "name": "T-Mobile US",
+  "sector": "Communication Services",
+  "sub": "Wireless Telecommunication Services"
+ },
+ "TPL": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Texas Pacific Land Corporation",
+  "sector": "Energy",
+  "sub": "Oil & Gas Exploration & Production"
+ },
+ "TPR": {
+  "group": "Consumer Durables & Apparel",
+  "industry": "Textiles, Apparel & Luxury Goods",
+  "name": "Tapestry, Inc.",
+  "sector": "Consumer Discretionary",
+  "sub": "Apparel, Accessories & Luxury Goods"
+ },
+ "TRGP": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Targa Resources",
+  "sector": "Energy",
+  "sub": "Oil & Gas Storage & Transportation"
+ },
+ "TRMB": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Trimble Inc.",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "TROW": {
+  "group": "Financial Services",
+  "industry": "Capital Markets",
+  "name": "T. Rowe Price",
+  "sector": "Financials",
+  "sub": "Asset Management & Custody Banks"
+ },
+ "TRV": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Travelers Companies (The)",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "TSCO": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Tractor Supply",
+  "sector": "Consumer Discretionary",
+  "sub": "Other Specialty Retail"
+ },
+ "TSLA": {
+  "group": "Automobiles & Components",
+  "industry": "Automobiles",
+  "name": "Tesla, Inc.",
+  "sector": "Consumer Discretionary",
+  "sub": "Automobile Manufacturers"
+ },
+ "TSN": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Tyson Foods",
+  "sector": "Consumer Staples",
+  "sub": "Packaged Foods & Meats"
+ },
+ "TT": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Trane Technologies",
+  "sector": "Industrials",
+  "sub": "Building Products"
+ },
+ "TTWO": {
+  "group": "Media & Entertainment",
+  "industry": "Entertainment",
+  "name": "Take-Two Interactive",
+  "sector": "Communication Services",
+  "sub": "Interactive Home Entertainment"
+ },
+ "TWLO": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Twilio",
+  "sector": "Information Technology",
+  "sub": "Systems Software"
+ },
+ "TXN": {
+  "group": "Semiconductors & Semiconductor Equipment",
+  "industry": "Semiconductors & Semiconductor Equipment",
+  "name": "Texas Instruments",
+  "sector": "Information Technology",
+  "sub": "Semiconductors"
+ },
+ "TXT": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "Textron",
+  "sector": "Industrials",
+  "sub": "Aerospace & Defense"
+ },
+ "TYL": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Tyler Technologies",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "UAL": {
+  "group": "Transportation",
+  "industry": null,
+  "name": "United Airlines Holdings",
+  "sector": "Industrials",
+  "sub": "Passenger Airlines"
+ },
+ "UBER": {
+  "group": "Transportation",
+  "industry": "Ground Transportation",
+  "name": "Uber",
+  "sector": "Industrials",
+  "sub": "Passenger Ground Transportation"
+ },
+ "UDR": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Residential REITs",
+  "name": "UDR, Inc.",
+  "sector": "Real Estate",
+  "sub": "Multi-Family Residential REITs"
+ },
+ "UHS": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "Universal Health Services",
+  "sector": "Health Care",
+  "sub": "Health Care Facilities"
+ },
+ "ULTA": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Ulta Beauty",
+  "sector": "Consumer Discretionary",
+  "sub": "Other Specialty Retail"
+ },
+ "UNH": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Providers & Services",
+  "name": "UnitedHealth Group",
+  "sector": "Health Care",
+  "sub": "Managed Health Care"
+ },
+ "UNP": {
+  "group": "Transportation",
+  "industry": "Ground Transportation",
+  "name": "Union Pacific Corporation",
+  "sector": "Industrials",
+  "sub": "Rail Transportation"
+ },
+ "UPS": {
+  "group": "Transportation",
+  "industry": null,
+  "name": "United Parcel Service",
+  "sector": "Industrials",
+  "sub": "Air Freight & Logistics"
+ },
+ "URI": {
+  "group": "Capital Goods",
+  "industry": null,
+  "name": "United Rentals",
+  "sector": "Industrials",
+  "sub": "Trading Companies & Distributors"
+ },
+ "USB": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "U.S. Bancorp",
+  "sector": "Financials",
+  "sub": "Diversified Banks"
+ },
+ "V": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Visa Inc.",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "VEEV": {
+  "group": "Health Care Equipment & Services",
+  "industry": null,
+  "name": "Veeva Systems",
+  "sector": "Health Care",
+  "sub": "Health Care Technology"
+ },
+ "VICI": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Vici Properties",
+  "sector": "Real Estate",
+  "sub": "Hotel & Resort REITs"
+ },
+ "VLO": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Valero Energy",
+  "sector": "Energy",
+  "sub": "Oil & Gas Refining & Marketing"
+ },
+ "VLTO": {
+  "group": "Commercial & Professional Services",
+  "industry": "Commercial Services & Supplies",
+  "name": "Veralto",
+  "sector": "Industrials",
+  "sub": "Environmental & Facilities Services"
+ },
+ "VMC": {
+  "group": "Materials",
+  "industry": "Construction Materials",
+  "name": "Vulcan Materials Company",
+  "sector": "Materials",
+  "sub": "Construction Materials"
+ },
+ "VMRK": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Residential REITs",
+  "name": "Vivmark Residential",
+  "sector": "Real Estate",
+  "sub": "Multi-Family Residential REITs"
+ },
+ "VRSK": {
+  "group": "Commercial & Professional Services",
+  "industry": "Professional Services",
+  "name": "Verisk Analytics",
+  "sector": "Industrials",
+  "sub": "Research & Consulting Services"
+ },
+ "VRSN": {
+  "group": "Software & Services",
+  "industry": "IT Services",
+  "name": "Verisign",
+  "sector": "Information Technology",
+  "sub": "Internet Services & Infrastructure"
+ },
+ "VRT": {
+  "group": "Capital Goods",
+  "industry": "Electrical Equipment",
+  "name": "Vertiv",
+  "sector": "Industrials",
+  "sub": "Electrical Components & Equipment"
+ },
+ "VRTX": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Vertex Pharmaceuticals",
+  "sector": "Health Care",
+  "sub": "Biotechnology"
+ },
+ "VST": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Vistra Corp.",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "VTR": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Ventas",
+  "sector": "Real Estate",
+  "sub": "Health Care REITs"
+ },
+ "VTRS": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Viatris",
+  "sector": "Health Care",
+  "sub": "Pharmaceuticals"
+ },
+ "VYLR": {
+  "group": "Food, Beverage & Tobacco",
+  "industry": "Food Products",
+  "name": "Vylor",
+  "sector": "Consumer Staples",
+  "sub": "Agricultural Products & Services"
+ },
+ "VZ": {
+  "group": "Telecommunication Services",
+  "industry": "Diversified Telecommunication Services",
+  "name": "Verizon",
+  "sector": "Communication Services",
+  "sub": "Integrated Telecommunication Services"
+ },
+ "WAB": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Wabtec",
+  "sector": "Industrials",
+  "sub": "Construction Machinery & Heavy Transportation Equipment"
+ },
+ "WAT": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Waters Corporation",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "WDAY": {
+  "group": "Software & Services",
+  "industry": "Software",
+  "name": "Workday, Inc.",
+  "sector": "Information Technology",
+  "sub": "Application Software"
+ },
+ "WDC": {
+  "group": "Technology Hardware & Equipment",
+  "industry": null,
+  "name": "Western Digital",
+  "sector": "Information Technology",
+  "sub": "Technology Hardware, Storage & Peripherals"
+ },
+ "WEC": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "WEC Energy Group",
+  "sector": "Utilities",
+  "sub": "Electric Utilities"
+ },
+ "WELL": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": null,
+  "name": "Welltower",
+  "sector": "Real Estate",
+  "sub": "Health Care REITs"
+ },
+ "WFC": {
+  "group": "Banks",
+  "industry": "Banks",
+  "name": "Wells Fargo",
+  "sector": "Financials",
+  "sub": "Diversified Banks"
+ },
+ "WM": {
+  "group": "Commercial & Professional Services",
+  "industry": "Commercial Services & Supplies",
+  "name": "Waste Management",
+  "sector": "Industrials",
+  "sub": "Environmental & Facilities Services"
+ },
+ "WMB": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "Williams Companies",
+  "sector": "Energy",
+  "sub": "Oil & Gas Storage & Transportation"
+ },
+ "WMT": {
+  "group": "Consumer Staples Distribution & Retail",
+  "industry": "Consumer Staples Distribution & Retail",
+  "name": "Walmart",
+  "sector": "Consumer Staples",
+  "sub": "Consumer Staples Merchandise Retail"
+ },
+ "WRB": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "W. R. Berkley Corporation",
+  "sector": "Financials",
+  "sub": "Property & Casualty Insurance"
+ },
+ "WSM": {
+  "group": "Consumer Discretionary Distribution & Retail",
+  "industry": "Specialty Retail",
+  "name": "Williams-Sonoma, Inc.",
+  "sector": "Consumer Discretionary",
+  "sub": "Homefurnishing Retail"
+ },
+ "WST": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "West Pharmaceutical Services",
+  "sector": "Health Care",
+  "sub": "Life Sciences Tools & Services"
+ },
+ "WTW": {
+  "group": "Insurance",
+  "industry": "Insurance",
+  "name": "Willis Towers Watson",
+  "sector": "Financials",
+  "sub": "Insurance Brokers"
+ },
+ "WY": {
+  "group": "Equity Real Estate Investment Trusts (REITs)",
+  "industry": "Specialized REITs",
+  "name": "Weyerhaeuser",
+  "sector": "Real Estate",
+  "sub": "Timber REITs"
+ },
+ "WYNN": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Wynn Resorts",
+  "sector": "Consumer Discretionary",
+  "sub": "Casinos & Gaming"
+ },
+ "XEL": {
+  "group": "Utilities",
+  "industry": null,
+  "name": "Xcel Energy",
+  "sector": "Utilities",
+  "sub": "Multi-Utilities"
+ },
+ "XOM": {
+  "group": "Energy",
+  "industry": "Oil, Gas & Consumable Fuels",
+  "name": "ExxonMobil",
+  "sector": "Energy",
+  "sub": "Integrated Oil & Gas"
+ },
+ "XYL": {
+  "group": "Capital Goods",
+  "industry": "Machinery",
+  "name": "Xylem Inc.",
+  "sector": "Industrials",
+  "sub": "Industrial Machinery & Supplies & Components"
+ },
+ "XYZ": {
+  "group": "Financial Services",
+  "industry": "Financial Services",
+  "name": "Block, Inc.",
+  "sector": "Financials",
+  "sub": "Transaction & Payment Processing Services"
+ },
+ "YUM": {
+  "group": "Consumer Services",
+  "industry": "Hotels, Restaurants & Leisure",
+  "name": "Yum! Brands",
+  "sector": "Consumer Discretionary",
+  "sub": "Restaurants"
+ },
+ "ZBH": {
+  "group": "Health Care Equipment & Services",
+  "industry": "Health Care Equipment & Supplies",
+  "name": "Zimmer Biomet",
+  "sector": "Health Care",
+  "sub": "Health Care Equipment"
+ },
+ "ZBRA": {
+  "group": "Technology Hardware & Equipment",
+  "industry": "Electronic Equipment, Instruments & Components",
+  "name": "Zebra Technologies",
+  "sector": "Information Technology",
+  "sub": "Electronic Equipment & Instruments"
+ },
+ "ZTS": {
+  "group": "Pharmaceuticals, Biotechnology & Life Sciences",
+  "industry": null,
+  "name": "Zoetis",
+  "sector": "Health Care",
+  "sub": "Pharmaceuticals"
+ }
+}

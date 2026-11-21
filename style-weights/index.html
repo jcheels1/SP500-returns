@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>S&amp;P 500 vs Value vs Growth — Sector, Industry Group and Company Weights</title>
+<style>
+:root{
+  --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984;
+  --grid:#e1e0d9; --axis:#c3c2b7; --row-hover:#f0efec; --lvl0:#f3f2ee; --lvl1:#f8f8f5;
+  --s1:#2a78d6; --s2:#eb6834; --s3:#1baf7a;     /* S&P 500, Value, Growth */
+  --pos:#2a78d6; --neg:#e34948; --mid:#f0efec;  /* diverging pair */
+  --border:#e1e0d9; --chip:#ffffff; --chip-on:#0b0b0b; --chip-on-ink:#ffffff;
+}
+@media (prefers-color-scheme: dark){
+  :root{
+    --page:#0d0d0d; --surface:#1a1a19; --ink:#f0efec; --ink2:#c3c2b7; --muted:#8f8e88;
+    --grid:#2c2c2a; --axis:#383835; --row-hover:#262624; --lvl0:#232321; --lvl1:#1e1e1d;
+    --s1:#3987e5; --s2:#d95926; --s3:#199e70;
+    --pos:#3987e5; --neg:#e66767; --mid:#383835;
+    --border:#2c2c2a; --chip:#1a1a19; --chip-on:#f0efec; --chip-on-ink:#0b0b0b;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--page);color:var(--ink);font:14px/1.4 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.wrap{max-width:1280px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:20px;margin:0 0 4px;font-weight:650;letter-spacing:-.01em}
+.sub{color:var(--ink2);font-size:13px;margin:0 0 16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:16px}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:16px}
+.tile{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:12px 14px}
+.tile .k{font-size:12px;color:var(--ink2);display:flex;align-items:center;gap:6px}
+.tile .v{font-size:22px;font-weight:650;margin-top:2px;font-variant-numeric:tabular-nums}
+.tile .d{font-size:12px;color:var(--muted)}
+.sw{display:inline-block;width:10px;height:10px;border-radius:2px;flex:none}
+.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.row + .row{margin-top:8px}
+.lbl{font-size:12px;color:var(--ink2);margin-right:2px}
+.seg{display:inline-flex;border:1px solid var(--border);border-radius:8px;overflow:hidden}
+.seg button{border:0;background:var(--chip);color:var(--ink);font:inherit;font-size:13px;padding:6px 10px;cursor:pointer;border-right:1px solid var(--border);white-space:nowrap}
+.seg button:last-child{border-right:0}
+.seg button[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-ink)}
+.btn{border:1px solid var(--border);background:var(--chip);color:var(--ink);font:inherit;font-size:13px;padding:6px 10px;border-radius:8px;cursor:pointer}
+input[type=search]{border:1px solid var(--border);background:var(--chip);color:var(--ink);font:inherit;font-size:14px;padding:6px 10px;border-radius:8px;min-width:200px;flex:1;max-width:320px}
+select{border:1px solid var(--border);background:var(--chip);color:var(--ink);font:inherit;font-size:13px;padding:6px 8px;border-radius:8px}
+.legend{display:flex;flex-wrap:wrap;gap:14px;font-size:12px;color:var(--ink2);margin:10px 0 4px}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.chart-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center}
+.chart-head h2,.tbl-head h2{font-size:15px;margin:0;font-weight:650}
+#chart{width:100%;overflow:hidden}
+#chart svg{display:block;width:100%}
+#chart text{fill:var(--ink2);font-size:12px}
+.tbl-head{display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;align-items:center;margin-bottom:10px}
+.tbl-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--border);border-radius:8px}
+table{border-collapse:collapse;width:100%;font-variant-numeric:tabular-nums}
+th,td{padding:6px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--grid)}
+th{position:sticky;top:0;background:var(--surface);font-size:12px;font-weight:600;color:var(--ink2);cursor:pointer;user-select:none;z-index:2;vertical-align:bottom}
+th .u{display:block;font-weight:400;color:var(--muted);font-size:11px}
+th.sorted{color:var(--ink)}
+th.sorted::after{content:attr(data-dir);margin-left:3px}
+th:first-child,td:first-child{text-align:left;position:sticky;left:0;z-index:1;background:inherit}
+th:first-child{z-index:3}
+tbody tr{background:var(--surface)}
+tbody tr.l0{background:var(--lvl0);font-weight:650}
+tbody tr.l1{background:var(--lvl1);font-weight:550}
+tbody tr:hover{background:var(--row-hover)}
+tr.l0 td:first-child,tr.l1 td:first-child{cursor:pointer}
+.nm{display:flex;align-items:center;gap:6px;min-width:220px;max-width:340px}
+.nm .tw{width:14px;flex:none;color:var(--muted);font-size:11px;text-align:center}
+.nm .tx{overflow:hidden;text-overflow:ellipsis}
+.nm .tk{font-weight:600;margin-right:6px}
+.nm .si{display:block;font-size:11px;color:var(--muted);font-weight:400;overflow:hidden;text-overflow:ellipsis}
+.nm .ct{color:var(--muted);font-weight:400;font-size:12px;margin-left:4px}
+tr.l1 .nm{padding-left:16px}
+tr.l2 .nm{padding-left:40px}
+.wcell{display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.wbar{width:56px;height:8px;position:relative;flex:none}
+.wbar i{position:absolute;left:0;top:0;bottom:0;border-radius:0 3px 3px 0;min-width:1px}
+.dcell{display:flex;align-items:center;justify-content:flex-end;gap:8px}
+.dbar{width:72px;height:10px;position:relative;flex:none;background:linear-gradient(var(--axis),var(--axis)) center/1px 100% no-repeat}
+.dbar i{position:absolute;top:1px;bottom:1px}
+.dbar i.p{left:50%;background:var(--pos);border-radius:0 3px 3px 0}
+.dbar i.n{right:50%;background:var(--neg);border-radius:3px 0 0 3px}
+.dv{min-width:52px;display:inline-block}
+.zero{color:var(--muted)}
+.split{display:flex;align-items:center;gap:8px;justify-content:flex-end}
+.splitbar{width:70px;height:8px;display:flex;gap:2px;flex:none}
+.splitbar i{display:block;height:100%}
+.splitbar i:first-child{border-radius:3px 0 0 3px}
+.splitbar i:last-child{border-radius:0 3px 3px 0}
+.sv{min-width:62px;font-size:12px;color:var(--ink2)}
+table.m-all .wbar{width:34px}
+table.m-all .dbar{width:46px}
+table.m-all .splitbar{width:50px}
+.notes{font-size:12px;color:var(--ink2)}
+.notes p{margin:6px 0}
+#tip{position:fixed;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,.12);display:none;z-index:10;min-width:180px}
+#tip .t{font-weight:650;margin-bottom:4px}
+#tip .r{display:flex;justify-content:space-between;gap:14px;font-variant-numeric:tabular-nums}
+#tip .r span:first-child{display:inline-flex;align-items:center;gap:6px;color:var(--ink2)}
+.empty{padding:24px;text-align:center;color:var(--muted)}
+@media (max-width:700px){
+  .wrap{padding:14px 6px 40px}
+  .card{padding:12px 8px}
+  .dcell{gap:4px}
+  .wcell{gap:0}
+  h1{font-size:18px}
+  .seg{flex-wrap:wrap}
+  .seg button{flex:1 1 auto}
+  .nm{min-width:104px;max-width:112px}
+  .nm .si,.nm .ct{display:none}
+  .nm .tk{display:block;margin:0}
+  tr.l2 .nm .tx{font-size:12px}
+  tr.l1 .nm{padding-left:8px}
+  tr.l2 .nm{padding-left:18px}
+  .wbar,.splitbar{display:none}
+  .dbar,table.m-all .dbar{width:26px}
+  .dv{min-width:40px}
+  th,td{padding:6px 6px;font-size:13px}
+  th{font-size:11px}
+  input[type=search]{min-width:0;max-width:none;width:100%}
+  .tile .v{font-size:19px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>S&amp;P 500 vs S&amp;P 500 Value vs S&amp;P 500 Growth</h1>
+  <p class="sub" id="sub">Loading…</p>
+
+  <div class="tiles" id="tiles"></div>
+
+  <div class="card">
+    <div class="chart-head">
+      <h2 id="chartTitle">Sector weights</h2>
+      <div class="row">
+        <div class="seg" id="chartMode">
+          <button data-v="w" aria-pressed="true">Weights</button>
+          <button data-v="d" aria-pressed="false">Difference vs S&amp;P 500</button>
+        </div>
+        <div class="seg" id="chartLevel">
+          <button data-v="0" aria-pressed="true">Sectors</button>
+          <button data-v="1" aria-pressed="false">Industry groups</button>
+        </div>
+      </div>
+    </div>
+    <div class="legend" id="chartLegend"></div>
+    <div id="chart"></div>
+  </div>
+
+  <div class="card">
+    <div class="tbl-head">
+      <h2>Sector › Industry group › Company</h2>
+      <button class="btn" id="csv">Download CSV</button>
+    </div>
+    <div class="row">
+      <span class="lbl">Compare</span>
+      <div class="seg" id="mode">
+        <button data-v="all">All three</button>
+        <button data-v="vs">Value vs S&amp;P</button>
+        <button data-v="gs">Growth vs S&amp;P</button>
+        <button data-v="gv">Growth vs Value</button>
+      </div>
+    </div>
+    <div class="row">
+      <span class="lbl">Expand to</span>
+      <div class="seg" id="depth">
+        <button data-v="0">Sectors</button>
+        <button data-v="1">Industry groups</button>
+        <button data-v="2">Companies</button>
+      </div>
+      <select id="member" aria-label="Filter companies by index membership">
+        <option value="all">All companies</option>
+        <option value="v">In Value</option>
+        <option value="g">In Growth</option>
+        <option value="vo">Value only</option>
+        <option value="go">Growth only</option>
+        <option value="b">In both (split)</option>
+      </select>
+      <input type="search" id="q" placeholder="Search ticker or company" aria-label="Search ticker or company">
+    </div>
+    <div class="legend">
+      <span><i class="sw" style="background:var(--s1)"></i>S&amp;P 500</span>
+      <span><i class="sw" style="background:var(--s2)"></i>Value</span>
+      <span><i class="sw" style="background:var(--s3)"></i>Growth</span>
+      <span><i class="sw" style="background:var(--pos)"></i>Difference above zero</span>
+      <span><i class="sw" style="background:var(--neg)"></i>Difference below zero</span>
+    </div>
+    <div class="tbl-wrap"><table id="tbl"><thead></thead><tbody></tbody></table></div>
+    <p class="notes" id="filterNote" style="display:none"></p>
+  </div>
+
+  <div class="card notes" id="notes"></div>
+</div>
+<div id="tip"></div>
+
+<script>
+(function(){
+"use strict";
+const $ = s => document.querySelector(s);
+const F = {sp500:"S&P 500", value:"Value", growth:"Growth"};
+const COLOR = {sp500:"var(--s1)", value:"var(--s2)", growth:"var(--s3)"};
+const DIFFS = {
+  vs:{a:"value", b:"sp500", label:"Value − S&P 500"},
+  gs:{a:"growth", b:"sp500", label:"Growth − S&P 500"},
+  gv:{a:"growth", b:"value", label:"Growth − Value"}
+};
+const MODES = {
+  all:["w:sp500","w:value","w:growth","d:vs","d:gs","d:gv","split"],
+  vs:["w:sp500","w:value","d:vs","split"],
+  gs:["w:sp500","w:growth","d:gs","split"],
+  gv:["w:value","w:growth","d:gv","split"]
+};
+let D, A, tree, all = [], state = {
+  mode: window.innerWidth < 760 ? "vs" : "all",
+  sort: "w:sp500", dir: -1, open: new Set(), q: "", member: "all",
+  chartMode: "w", chartLevel: 0
+};
+
+const fmtW = v => v === 0 ? "—" : v < 0.01 ? "<0.01" : v.toFixed(2);
+const fmtD = v => Math.abs(v) < 0.005 ? "0.00" : (v > 0 ? "+" : "−") + Math.abs(v).toFixed(2);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const vshare = n => { const v = A * n.value, g = (1 - A) * n.growth; return v + g > 0 ? v / (v + g) : null; };
+const diff = (n, k) => n[DIFFS[k].a] - n[DIFFS[k].b];
+
+function build(){
+  const secs = new Map();
+  for (const c of D.companies){
+    if (!secs.has(c.s)) secs.set(c.s, {id:"s:"+c.s, name:c.s, level:0, kids:new Map()});
+    const s = secs.get(c.s);
+    if (!s.kids.has(c.g)) s.kids.set(c.g, {id:"g:"+c.s+"|"+c.g, name:c.g, level:1, sector:c.s, kids:[]});
+    s.kids.get(c.g).kids.push({id:"c:"+c.t, name:c.n, t:c.t, si:c.si, level:2, sector:c.s, group:c.g,
+      sp500:c.sp500, value:c.value, growth:c.growth});
+  }
+  const roll = n => {
+    if (n.level === 2) return n;
+    n.kids = Array.isArray(n.kids) ? n.kids : [...n.kids.values()];
+    n.kids.forEach(roll);
+    for (const f of ["sp500","value","growth"]) n[f] = n.kids.reduce((s,k)=>s+k[f],0);
+    n.count = n.level === 1 ? n.kids.length : n.kids.reduce((s,k)=>s+k.count,0);
+    n.cv = n.level === 1 ? n.kids.filter(k=>k.value>0).length : n.kids.reduce((s,k)=>s+k.cv,0);
+    n.cg = n.level === 1 ? n.kids.filter(k=>k.growth>0).length : n.kids.reduce((s,k)=>s+k.cg,0);
+    return n;
+  };
+  tree = [...secs.values()].map(roll);
+  const walk = n => { all.push(n); if (n.level < 2) n.kids.forEach(walk); };
+  tree.forEach(walk);
+}
+
+function sortKey(n, key){
+  if (key === "name") return n.level === 2 ? n.t : n.name;
+  if (key === "split") return vshare(n) ?? -1;
+  const [t, f] = key.split(":");
+  return t === "w" ? n[f] : diff(n, f);
+}
+function sorted(arr){
+  const k = state.sort, d = state.dir;
+  return [...arr].sort((x, y) => {
+    const a = sortKey(x, k), b = sortKey(y, k);
+    return (typeof a === "string" ? a.localeCompare(b) : a - b) * d;
+  });
+}
+
+function memberOK(c){
+  switch (state.member){
+    case "v": return c.value > 0;
+    case "g": return c.growth > 0;
+    case "vo": return c.value > 0 && c.growth === 0;
+    case "go": return c.growth > 0 && c.value === 0;
+    case "b": return c.value > 0 && c.growth > 0;
+    default: return true;
+  }
+}
+function matchQ(c){
+  if (!state.q) return true;
+  const q = state.q.toLowerCase();
+  return c.t.toLowerCase().startsWith(q) || c.name.toLowerCase().includes(q);
+}
+const filtering = () => state.q || state.member !== "all";
+
+function visibleRows(){
+  const rows = [];
+  const f = filtering();
+  for (const s of sorted(tree)){
+    const gs = sorted(s.kids).map(g => ({g, cs: sorted(g.kids).filter(c => memberOK(c) && matchQ(c))}))
+      .filter(x => !f || x.cs.length);
+    if (f && !gs.length) continue;
+    rows.push(s);
+    if (!(state.open.has(s.id) || (state.q && f))) continue;
+    for (const {g, cs} of gs){
+      rows.push(g);
+      if (!(state.open.has(g.id) || state.q)) continue;
+      rows.push(...(f ? cs : sorted(g.kids)));
+    }
+  }
+  return rows;
+}
+
+// per-level scales so small company differences remain visible
+function scales(){
+  const sc = {};
+  for (const lv of [0,1,2]){
+    const ns = all.filter(n => n.level === lv);
+    sc[lv] = {
+      w: Math.max(...ns.map(n => Math.max(n.sp500, n.value, n.growth))),
+      d: Math.max(...ns.map(n => Math.max(...Object.keys(DIFFS).map(k => Math.abs(diff(n,k))))))
+    };
+  }
+  return sc;
+}
+let SC;
+
+function colHead(key){
+  if (key === "split") return `<th data-k="split" title="Share of the company's (or group's) S&P 500 market cap assigned to Value vs Growth">Value / Growth split<span class="u">% of cap</span></th>`;
+  const [t, f] = key.split(":");
+  if (t === "w") return `<th data-k="${key}"><span style="display:inline-flex;align-items:center;gap:5px"><i class="sw" style="background:${COLOR[f]}"></i>${F[f]}</span><span class="u">weight %</span></th>`;
+  return `<th data-k="${key}">${DIFFS[f].label}<span class="u">pct. pts</span></th>`;
+}
+function cell(n, key){
+  if (key === "split"){
+    const s = vshare(n);
+    if (s === null) return `<td></td>`;
+    const vp = Math.round(s * 100), gp = 100 - vp;
+    const bar = vp === 0 || gp === 0
+      ? `<span class="splitbar"><i style="width:100%;background:${vp ? COLOR.value : COLOR.growth};border-radius:3px"></i></span>`
+      : `<span class="splitbar"><i style="width:${vp}%;background:${COLOR.value}"></i><i style="width:${gp}%;background:${COLOR.growth}"></i></span>`;
+    return `<td><span class="split">${bar}<span class="sv">${vp}V / ${gp}G</span></span></td>`;
+  }
+  const [t, f] = key.split(":");
+  if (t === "w"){
+    const v = n[f], w = SC[n.level].w ? v / SC[n.level].w * 100 : 0;
+    return `<td><span class="wcell"><span class="wbar">${v>0?`<i style="width:${w}%;background:${COLOR[f]}"></i>`:""}</span><span class="${v===0?"zero":""}">${fmtW(v)}</span></span></td>`;
+  }
+  const v = diff(n, f), w = SC[n.level].d ? Math.abs(v) / SC[n.level].d * 50 : 0;
+  const z = Math.abs(v) < 0.005;
+  return `<td><span class="dcell"><span class="dbar">${z ? "" : `<i class="${v>0?"p":"n"}" style="width:${w}%"></i>`}</span><span class="dv ${z?"zero":""}">${fmtD(v)}</span></span></td>`;
+}
+function nameCell(n){
+  if (n.level === 2){
+    return `<td><div class="nm"><span class="tw"></span><span class="tx"><span class="tk">${esc(n.t)}</span>${esc(n.name)}<span class="si">${esc(n.si || "")}</span></span></div></td>`;
+  }
+  const open = state.open.has(n.id) || (state.q && filtering());
+  const ct = n.level === 0 ? `${n.kids.length} groups · ${n.count} cos` : `${n.count} cos`;
+  return `<td><div class="nm"><span class="tw">${open ? "▼" : "▶"}</span><span class="tx">${esc(n.name)}<span class="ct">${ct}</span></span></div></td>`;
+}
+
+function renderTable(){
+  const cols = MODES[state.mode];
+  const head = `<tr><th data-k="name">Name</th>${cols.map(colHead).join("")}</tr>`;
+  $("#tbl").className = "m-" + state.mode;
+  $("#tbl thead").innerHTML = head;
+  $("#tbl thead").querySelectorAll("th").forEach(th => {
+    if (th.dataset.k === state.sort){ th.classList.add("sorted"); th.dataset.dir = state.dir < 0 ? "▼" : "▲"; }
+  });
+  const rows = visibleRows();
+  $("#tbl tbody").innerHTML = rows.length
+    ? rows.map(n => `<tr class="l${n.level}" data-id="${esc(n.id)}">${nameCell(n)}${cols.map(k => cell(n,k)).join("")}</tr>`).join("")
+    : `<tr><td colspan="${cols.length+1}" class="empty">No companies match.</td></tr>`;
+  const fn = $("#filterNote");
+  if (filtering()){
+    fn.style.display = "block";
+    fn.textContent = "Filter is on: sector and industry group rows still show their full weights, not just the companies listed.";
+  } else fn.style.display = "none";
+  ["mode","depth"].forEach(id => document.querySelectorAll(`#${id} button`).forEach(b => {
+    b.setAttribute("aria-pressed", id === "mode" ? String(b.dataset.v === state.mode) : "false");
+  }));
+}
+
+// ------------------------------------------------------------ chart
+function barPath(x0, x1, y, h){
+  // horizontal bar anchored at x0 (square), rounded at the data end x1
+  const w = Math.abs(x1 - x0); if (w < 0.5) return "";
+  const r = Math.min(4, w, h / 2), dir = x1 >= x0 ? 1 : -1;
+  const xe = x1 - dir * r;
+  return `M${x0},${y}H${xe}Q${x1},${y} ${x1},${y+r}V${y+h-r}Q${x1},${y+h} ${xe},${y+h}H${x0}Z`;
+}
+function renderChart(){
+  const lvl = state.chartLevel, mode = state.chartMode;
+  const nodes = all.filter(n => n.level === lvl).sort((a,b) => b.sp500 - a.sp500);
+  const series = mode === "w" ? ["sp500","value","growth"] : ["value","growth"];
+  const val = (n, f) => mode === "w" ? n[f] : n[f] - n.sp500;
+  $("#chartTitle").textContent = (lvl ? "Industry group " : "Sector ") + (mode === "w" ? "weights" : "difference vs S&P 500");
+  $("#chartLegend").innerHTML = series.map(f => `<span><i class="sw" style="background:${COLOR[f]}"></i>${mode==="w"?F[f]:F[f]+" − S&P 500"}</span>`).join("")
+    + `<span style="color:var(--muted)">${mode==="w"?"weight %":"percentage points"}${lvl?" · sorted by S&P 500 weight":""}</span>`;
+  const el = $("#chart"), W = el.clientWidth || 800;
+  const narrow = W < 560;
+  const labW = narrow ? (lvl ? 150 : 118) : (lvl ? 290 : 170);
+  const bh = mode === "w" ? (lvl ? 5 : 7) : (lvl ? 6 : 9), gap = 2, pad = lvl ? 8 : 12;
+  const rowH = series.length * bh + (series.length - 1) * gap + pad;
+  const top = 18, H = top + nodes.length * rowH + 6;
+  const vals = nodes.flatMap(n => series.map(f => val(n, f)));
+  let lo = Math.min(0, ...vals), hi = Math.max(0, ...vals);
+  const x0 = labW + 4, x1 = W - (narrow ? 38 : 50);
+  const step = niceStep((hi - lo) / (narrow ? 4 : 6));
+  lo = Math.floor(lo / step) * step; hi = Math.ceil(hi / step) * step;
+  const X = v => x0 + (v - lo) / (hi - lo) * (x1 - x0);
+  let s = `<svg viewBox="0 0 ${W} ${H}" height="${H}" role="img" aria-label="${esc($("#chartTitle").textContent)}">`;
+  for (let t = lo; t <= hi + 1e-9; t += step){
+    const x = X(t);
+    s += `<line x1="${x}" x2="${x}" y1="${top-4}" y2="${H-4}" stroke="var(--${Math.abs(t)<1e-9?"axis":"grid"})" stroke-width="1"/>`;
+    s += `<text x="${x}" y="11" text-anchor="middle">${(t>0&&mode==="d"?"+":"")+(+t.toFixed(2))}</text>`;
+  }
+  nodes.forEach((n, i) => {
+    const y = top + i * rowH + pad / 2;
+    const name = narrow && n.name.length > (lvl ? 22 : 17) ? n.name.slice(0, lvl ? 21 : 16) + "…" : n.name;
+    s += `<g class="hit" data-id="${esc(n.id)}"><rect x="0" y="${y - pad/2}" width="${W}" height="${rowH}" fill="transparent"/>`;
+    s += `<text x="${labW}" y="${y + (rowH - pad)/2 + 4}" text-anchor="end">${esc(name)}</text>`;
+    series.forEach((f, j) => {
+      const yy = y + j * (bh + gap);
+      s += `<path d="${barPath(X(0), X(val(n, f)), yy, bh)}" fill="${COLOR[f]}"/>`;
+    });
+    if (!narrow){
+      if (mode === "w" && !lvl) s += `<text x="${X(n.sp500) + 6}" y="${y + bh - 0.5}" style="font-size:11px">${n.sp500.toFixed(1)}</text>`;
+    }
+    s += `</g>`;
+  });
+  s += `</svg>`;
+  el.innerHTML = s;
+  el.querySelectorAll("g.hit").forEach(g => {
+    const n = all.find(x => x.id === g.dataset.id);
+    g.addEventListener("pointermove", e => showTip(e, n));
+    g.addEventListener("pointerleave", hideTip);
+    g.addEventListener("click", () => jumpTo(n));
+    g.style.cursor = "pointer";
+  });
+}
+function niceStep(raw){
+  const p = Math.pow(10, Math.floor(Math.log10(raw))), m = raw / p;
+  return (m <= 1 ? 1 : m <= 2 ? 2 : m <= 2.5 ? 2.5 : m <= 5 ? 5 : 10) * p;
+}
+function showTip(e, n){
+  const t = $("#tip"), sv = vshare(n);
+  t.innerHTML = `<div class="t">${esc(n.level===2 ? n.t+" · "+n.name : n.name)}</div>`
+    + ["sp500","value","growth"].map(f => `<div class="r"><span><i class="sw" style="background:${COLOR[f]}"></i>${F[f]}</span><span>${n[f].toFixed(2)}%</span></div>`).join("")
+    + Object.keys(DIFFS).map(k => `<div class="r"><span>${DIFFS[k].label}</span><span>${fmtD(diff(n,k))} pp</span></div>`).join("")
+    + (sv !== null ? `<div class="r"><span>Value / Growth split</span><span>${Math.round(sv*100)} / ${100-Math.round(sv*100)}</span></div>` : "")
+    + (n.level < 2 ? `<div class="r"><span>Companies (S&P / V / G)</span><span>${n.count} / ${n.cv} / ${n.cg}</span></div>` : "");
+  t.style.display = "block";
+  const r = t.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY + 14;
+  if (x + r.width > innerWidth - 8) x = e.clientX - r.width - 14;
+  if (y + r.height > innerHeight - 8) y = e.clientY - r.height - 14;
+  t.style.left = Math.max(8, x) + "px"; t.style.top = Math.max(8, y) + "px";
+}
+function hideTip(){ $("#tip").style.display = "none"; }
+function jumpTo(n){
+  if (n.level === 0) state.open.add(n.id);
+  else { state.open.add("s:" + n.sector); state.open.add(n.id); }
+  state.q = ""; $("#q").value = "";
+  renderTable();
+  const row = document.querySelector(`tr[data-id="${CSS.escape(n.id)}"]`);
+  if (row) row.scrollIntoView({behavior:"smooth", block:"start"});
+}
+
+// ------------------------------------------------------------ CSV
+function csv(){
+  const lines = [["Level","Sector","Industry group","Ticker","Company","GICS sub-industry","S&P 500 wt %","Value wt %","Growth wt %","Value - S&P 500 pp","Growth - S&P 500 pp","Growth - Value pp","Value share of cap %"]];
+  for (const s of sorted(tree)){
+    const row = (n, lvl, sec, grp) => [lvl, sec, grp, n.t || "", n.level===2 ? n.name : "", n.si || "",
+      n.sp500.toFixed(4), n.value.toFixed(4), n.growth.toFixed(4), diff(n,"vs").toFixed(4), diff(n,"gs").toFixed(4), diff(n,"gv").toFixed(4),
+      vshare(n) === null ? "" : (vshare(n)*100).toFixed(1)];
+    lines.push(row(s, "Sector", s.name, ""));
+    for (const g of sorted(s.kids)){
+      lines.push(row(g, "Industry group", s.name, g.name));
+      for (const c of sorted(g.kids)) lines.push(row(c, "Company", s.name, g.name));
+    }
+  }
+  const txt = lines.map(r => r.map(v => /[",\n]/.test(v) ? `"${String(v).replace(/"/g,'""')}"` : v).join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([txt], {type:"text/csv"}));
+  a.download = `sp500_value_growth_weights_${D.asOf.sp500.replace(/\s/g,"")}.csv`;
+  a.click();
+}
+
+// ------------------------------------------------------------ header
+function renderHeader(){
+  const as = D.asOf;
+  const same = as.sp500 === as.value && as.value === as.growth;
+  $("#sub").innerHTML = `Holdings as of <b>${esc(same ? as.sp500 : `S&P 500 ${as.sp500}, Value ${as.value}, Growth ${as.growth}`)}</b> · weights from the SPDR funds that track each index (${D.funds.sp500}, ${D.funds.value}, ${D.funds.growth}) · refreshed ${esc(D.generated)}`;
+  const split = D.companies.filter(c => c.value > 0 && c.growth > 0).length;
+  const vOnly = D.companies.filter(c => c.value > 0 && c.growth === 0).length;
+  const gOnly = D.companies.filter(c => c.growth > 0 && c.value === 0).length;
+  $("#tiles").innerHTML = [
+    ["S&P 500", D.counts.sp500, "companies", COLOR.sp500],
+    ["Value", D.counts.value, `${(A*100).toFixed(1)}% of S&P 500 market cap`, COLOR.value],
+    ["Growth", D.counts.growth, `${((1-A)*100).toFixed(1)}% of S&P 500 market cap`, COLOR.growth],
+    ["In both (split)", split, `${vOnly} Value only · ${gOnly} Growth only`, null]
+  ].map(([k,v,d,c]) => `<div class="tile"><div class="k">${c?`<i class="sw" style="background:${c}"></i>`:""}${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
+  $("#notes").innerHTML = `
+    <p><b>Data.</b> Holdings and weights come from State Street's daily holdings files for SPY (S&amp;P 500), SPYV (S&amp;P 500 Value) and SPYG (S&amp;P 500 Growth). These are the same indices VOOV and VOOG track. Cash, money market and non-equity lines are excluded, and each fund's stock weights are rescaled to 100% (raw stock weight before rescaling: SPY ${D.rawEquityWeight.sp500}%, SPYV ${D.rawEquityWeight.value}%, SPYG ${D.rawEquityWeight.growth}%). Fund weights track the index closely but can differ slightly around rebalances.</p>
+    <p><b>Classification.</b> Each company's GICS sector and industry group comes from its GICS sub-industry as listed on Wikipedia's S&amp;P 500 constituents table, mapped through the GICS hierarchy. Share classes (e.g. GOOGL and GOOG) are shown as separate lines.</p>
+    <p><b>Differences</b> are in percentage points: a positive Value − S&amp;P 500 figure means the sector, group or company is a larger share of the Value index than of the S&amp;P 500.</p>
+    <p><b>Value / Growth split.</b> S&amp;P divides each company's float-adjusted market cap between the Value and Growth indices. The S&amp;P 500 weight equals a × Value weight + (1 − a) × Growth weight, where a is Value's share of total S&amp;P 500 cap (currently ${(A*100).toFixed(2)}%, solved from the holdings). The split column applies that to show how much of each company's or group's cap sits in each style index.</p>
+    <p>The data refreshes automatically each weekday evening. Companion page: <a href="../" style="color:var(--s1)">S&amp;P 500 price returns and breadth</a>. Source: <a href="https://github.com/jcheels1/SP500-returns/tree/main/style-weights" style="color:var(--s1)">github.com/jcheels1/SP500-returns</a>.</p>`;
+}
+
+// ------------------------------------------------------------ events
+function bind(){
+  $("#mode").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.mode = b.dataset.v;
+    if (!MODES[state.mode].includes(state.sort) && state.sort !== "name") { state.sort = MODES[state.mode][0]; state.dir = -1; }
+    renderTable(); });
+  $("#depth").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; const d = +b.dataset.v;
+    state.open = new Set(all.filter(n => n.level < d).map(n => n.id)); renderTable(); });
+  $("#tbl thead").addEventListener("click", e => { const th = e.target.closest("th"); if (!th) return; const k = th.dataset.k;
+    if (state.sort === k) state.dir *= -1; else { state.sort = k; state.dir = k === "name" ? 1 : -1; }
+    renderTable(); });
+  $("#tbl tbody").addEventListener("click", e => { const tr = e.target.closest("tr"); if (!tr || tr.classList.contains("l2") || !tr.dataset.id) return;
+    if (!e.target.closest("td:first-child")) return;
+    const id = tr.dataset.id; state.open.has(id) ? state.open.delete(id) : state.open.add(id); renderTable(); });
+  $("#tbl tbody").addEventListener("pointermove", e => { const tr = e.target.closest("tr"); if (!tr || !tr.dataset.id || e.pointerType !== "mouse") return hideTip();
+    showTip(e, all.find(n => n.id === tr.dataset.id)); });
+  $("#tbl tbody").addEventListener("pointerleave", hideTip);
+  let qt; $("#q").addEventListener("input", e => { clearTimeout(qt); qt = setTimeout(() => { state.q = e.target.value.trim(); renderTable(); }, 120); });
+  $("#member").addEventListener("change", e => { state.member = e.target.value;
+    if (state.member !== "all") state.open = new Set(all.filter(n => n.level < 2).map(n => n.id)); renderTable(); });
+  $("#csv").addEventListener("click", csv);
+  $("#chartMode").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.chartMode = b.dataset.v;
+    document.querySelectorAll("#chartMode button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); renderChart(); });
+  $("#chartLevel").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.chartLevel = +b.dataset.v;
+    document.querySelectorAll("#chartLevel button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); renderChart(); });
+  let rt; addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(renderChart, 150); });
+  matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", renderChart);
+}
+
+fetch("data/holdings.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
+  D = d; A = d.valueCapShare; build(); SC = scales();
+  renderHeader(); bind(); renderTable(); renderChart();
+}).catch(err => { $("#sub").textContent = "Could not load data: " + err; });
+})();
+</script>
+</body>
+</html>
