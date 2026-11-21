@@ -26,7 +26,7 @@ SPY_URL = "https://www.ssga.com/library-content/products/fund-data/etfs/us/holdi
 WIKI_LIST = "https://en.wikipedia.org/wiki/List_of_S%26P_500_companies"
 WIKI_GICS = "https://en.wikipedia.org/wiki/Global_Industry_Classification_Standard"
 GH_LIST = "https://raw.githubusercontent.com/datasets/s-and-p-500-companies/main/data/constituents.csv"
-YAHOO = "https://query{n}.finance.yahoo.com/v8/finance/chart/{sym}?range=2y&interval=1d&includeAdjustedClose=true"
+YAHOO = "https://query{n}.finance.yahoo.com/v8/finance/chart/{sym}?range=5y&interval=1d&includeAdjustedClose=true"
 NY = ZoneInfo("America/New_York")
 
 
@@ -144,6 +144,10 @@ NASDAQ = "https://api.nasdaq.com/api/quote/{sym}/historical?assetclass={ac}&from
 NASDAQ_HDR = {**UA, "Accept": "application/json, text/plain, */*", "Origin": "https://www.nasdaq.com",
               "Referer": "https://www.nasdaq.com/"}
 ETFS = {"SPY", "RSP"}
+HISTORY_START = dt.date(2021, 10, 1)   # enough trading days for a 200-day average on 2022-09-30
+BREADTH_START = dt.date(2022, 9, 30)
+MA_WINDOWS = (20, 50, 100, 200)
+OHLC = {}  # full daily bars kept for SPY (price panel on the breadth chart)
 
 
 def nasdaq_series(tic):
@@ -158,7 +162,7 @@ def nasdaq_series(tic):
 def _nasdaq_series(tic):
     today = dt.datetime.now(NY).date()
     url = NASDAQ.format(sym=tic, ac="etf" if tic in ETFS else "stocks",
-                        f=(today - relativedelta(months=14)).isoformat(), t=today.isoformat())
+                        f=HISTORY_START.isoformat(), t=today.isoformat())
     last = None
     for i in range(4):
         try:
@@ -169,7 +173,10 @@ def _nasdaq_series(tic):
                 for x in rows:
                     try:
                         d = dt.datetime.strptime(x["date"], "%m/%d/%Y").date()
-                        s[d] = float(str(x["close"]).replace("$", "").replace(",", ""))
+                        num = lambda v: float(str(v).replace("$", "").replace(",", ""))
+                        s[d] = num(x["close"])
+                        if tic == "SPY":
+                            OHLC.setdefault("SPY", {})[d] = (num(x["open"]), num(x["high"]), num(x["low"]), s[d])
                     except Exception:
                         continue
                 if len(s) > 20:
@@ -259,6 +266,7 @@ def main():
     ap.add_argument("--workdir", required=True)
     ap.add_argument("--out", required=True)
     ap.add_argument("--prev")
+    ap.add_argument("--breadth-out", help="moving-average breadth series (default: breadth.json next to --out)")
     a = ap.parse_args()
     os.makedirs(a.workdir, exist_ok=True)
 
@@ -269,7 +277,7 @@ def main():
     tickers = [h["ticker"] for h in holdings]
     refs = ["SPY", "RSP"]
     series, errors, psrc = {}, {}, {}
-    with ThreadPoolExecutor(max_workers=4) as ex:
+    with ThreadPoolExecutor(max_workers=5) as ex:
         futs = {t: ex.submit(price_series, t) for t in refs + tickers}
         for i, (t, f) in enumerate(futs.items()):
             try:
@@ -283,10 +291,11 @@ def main():
         json.dump({t: {k.isoformat(): v for k, v in s.items()} for t, s in series.items()}, f)
     spin_applied = apply_spinoffs(series)
 
-    # flag single-day moves that look like unadjusted splits
+    # flag single-day moves over the last ~13 months that look like unadjusted splits or spin-offs
     split_flags = {}
+    flag_from = dt.datetime.now(NY).date() - relativedelta(months=13)
     for t, s in series.items():
-        ks = sorted(s)
+        ks = [k for k in sorted(s) if k >= flag_from]
         for a_, b_ in zip(ks, ks[1:]):
             ch = s[b_] / s[a_] - 1
             if ch < -0.30 or ch > 0.9:
@@ -315,6 +324,44 @@ def main():
             out.append(None if k is None or (b - k).days > 7 or min(s) > b else round(e[1] / c - 1, 6))
         return out[0], out[1], round(e[1], 4)
 
+    # ---- moving averages: per-stock levels today and % of constituents above each, daily ----
+    import pandas as _pd
+    tick_set = [t for t in tickers if series.get(t)]
+    days = sorted(d for d in spy if d <= end)
+    px = _pd.DataFrame({t: _pd.Series(series[t]) for t in tick_set}).sort_index()
+    px.index = _pd.to_datetime(px.index)
+    px = px.reindex(_pd.to_datetime(days)).ffill(limit=5)
+    ma_now, breadth = {}, {"dates": [], "pct": {}, "eligible": {}}
+    sel = px.index >= _pd.Timestamp(BREADTH_START)
+    breadth["dates"] = [d.strftime("%Y-%m-%d") for d in px.index[sel]]
+    for n in MA_WINDOWS:
+        sma = px.rolling(n, min_periods=n).mean()
+        elig = sma.notna() & px.notna()
+        above = (px > sma) & elig
+        pct = (above.sum(axis=1) / elig.sum(axis=1).where(elig.sum(axis=1) > 0)) * 100
+        breadth["pct"][str(n)] = [None if _pd.isna(v) else round(float(v), 2) for v in pct[sel]]
+        breadth["eligible"][str(n)] = [int(v) for v in elig.sum(axis=1)[sel]]
+        last = sma.iloc[-1]
+        for t in tick_set:
+            v = last.get(t)
+            ma_now.setdefault(t, {})[f"ma{n}"] = None if _pd.isna(v) else round(float(v), 4)
+    spy_s = _pd.Series({_pd.Timestamp(d): spy[d] for d in days})
+    spy_ohlc = OHLC.get("SPY", {})
+    sd = [d for d in days if d >= BREADTH_START]
+    breadth["spy"] = {
+        "o": [spy_ohlc.get(d, (None,) * 4)[0] for d in sd], "h": [spy_ohlc.get(d, (None,) * 4)[1] for d in sd],
+        "l": [spy_ohlc.get(d, (None,) * 4)[2] for d in sd], "c": [spy[d] for d in sd],
+        "sma50": [round(float(v), 2) for v in spy_s.rolling(50).mean()[spy_s.index >= _pd.Timestamp(BREADTH_START)]],
+        "sma200": [round(float(v), 2) for v in spy_s.rolling(200).mean()[spy_s.index >= _pd.Timestamp(BREADTH_START)]],
+    }
+    breadth["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    breadth["price_asof"] = end.isoformat()
+    breadth["universe"] = "Current S&P 500 constituents (SPY holdings); each day counts names with enough history for that average"
+    bout = a.breadth_out or os.path.join(os.path.dirname(os.path.abspath(a.out)), "breadth.json")
+    with open(bout, "w") as f:
+        json.dump(breadth, f, separators=(",", ":"))
+    print("breadth latest:", {n: breadth["pct"][n][-1] for n in breadth["pct"]}, "eligible:", {n: breadth["eligible"][n][-1] for n in breadth["eligible"]}, file=sys.stderr)
+
     rows, unclassified = [], []
     for h in holdings:
         t = h["ticker"]
@@ -328,13 +375,14 @@ def main():
             unclassified.append(t)
             g = {"sector": (c or {}).get("gics_sector", "Unclassified"), "industry_group": "Unclassified",
                  "industry": "Unclassified", "sub_industry": (c or {}).get("gics_sub", "Unclassified")}
-        r6, r12, px = rets(series.get(t))
+        r6, r12, px_ = rets(series.get(t))
         rows.append({
             "ticker": t,
             "name": c["name"] if c else h["spy_name"].title(),
             "sector": g["sector"], "industry_group": g["industry_group"],
             "industry": g["industry"], "sub_industry": g["sub_industry"],
-            "weight": round(h["weight"], 6), "price": px, "r6m": r6, "r12m": r12,
+            "weight": round(h["weight"], 6), "price": px_, "r6m": r6, "r12m": r12,
+            **ma_now.get(t, {f"ma{n}": None for n in MA_WINDOWS}),
         })
 
     # constituent change log vs previous build

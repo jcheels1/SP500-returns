@@ -15,7 +15,7 @@ concurrency:
 jobs:
   refresh:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
 
@@ -27,7 +27,7 @@ jobs:
         run: pip install pandas lxml openpyxl requests python-dateutil
 
       - name: Rebuild constituents and returns
-        run: python scripts/build.py --workdir /tmp/spx --out /tmp/data.json --prev data.json
+        run: python scripts/build.py --workdir /tmp/spx --out /tmp/data.json --breadth-out /tmp/breadth.json --prev data.json
 
       - name: Check the build before publishing
         run: |
@@ -43,6 +43,10 @@ jobs:
               if (today - dt.date.fromisoformat(d[k])).days > 6: problems.append(f"{k} stale: {d[k]}")
           missing = sum(r["r6m"] is None for r in d["rows"])
           if missing > 15: problems.append(f"{missing} names without a 6M return")
+          b = json.load(open("/tmp/breadth.json"))
+          if b["dates"][0] != "2022-09-30" or b["dates"][-1] != d["price_asof"]: problems.append(f"breadth dates {b['dates'][0]}..{b['dates'][-1]}")
+          for n in ("20", "50", "100", "200"):
+              if b["pct"][n][-1] is None or b["eligible"][n][-1] < 480: problems.append(f"breadth {n}-day eligible {b['eligible'][n][-1]}")
           if problems:
               print("Not publishing:", "; ".join(problems)); sys.exit(1)
           print("OK:", d["count"], "names; holdings", d["holdings_asof"], "; prices", d["price_asof"])
@@ -53,9 +57,10 @@ jobs:
       - name: Commit new data
         run: |
           cp /tmp/data.json data.json
+          cp /tmp/breadth.json breadth.json
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data.json
+          git add data.json breadth.json
           if git diff --cached --quiet; then echo "No change"; exit 0; fi
           git commit -m "Refresh data: holdings $(python -c "import json;print(json.load(open('data.json'))['holdings_asof'])")"
           git push

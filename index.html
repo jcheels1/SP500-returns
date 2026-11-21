@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S&amp;P 500 Price Returns by Sector and Industry</title>
+<title>S&amp;P 500 Price Returns and Moving Averages by Sector and Industry</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,16 +20,23 @@
   header h1{font-size:18px;font-weight:600;color:var(--amber);margin:0 0 4px;letter-spacing:-.01em}
   .asof{color:var(--muted);font-size:12px}
   .asof b{color:var(--fg);font-weight:500}
-  .ref{display:flex;flex-wrap:wrap;gap:8px 18px;margin:10px 0 12px;font-size:12px}
+  .tabs{display:flex;gap:2px;margin:12px 0 0;border-bottom:1px solid var(--line)}
+  .tabs button{background:transparent;border:0;border-bottom:2px solid transparent;color:var(--muted);font:inherit;font-size:14px;font-weight:500;padding:8px 14px;cursor:pointer;margin-bottom:-1px}
+  .tabs button.on{color:var(--amber);border-bottom-color:var(--amber)}
+  .tabs button:hover{color:var(--fg)}
+  .ref{display:flex;flex-wrap:wrap;gap:8px 12px;margin:12px 0;font-size:12px}
   .ref .k{color:var(--muted)}
   .ref .tile{background:var(--panel);border:1px solid var(--line);padding:6px 10px}
+  .ref .tile b{font-weight:600}
   .controls{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;background:var(--bar);border:1px solid var(--line);padding:8px 10px}
   .seg{display:inline-flex;border:1px solid #3a3a3a}
   .seg button{background:#111;color:var(--muted);border:0;border-right:1px solid #3a3a3a;font:inherit;font-size:12px;padding:4px 9px;cursor:pointer}
   .seg button:last-child{border-right:0}
   .seg button.on{background:var(--amber);color:#000;font-weight:600}
+  .seg.multi button.on{color:#000}
   .lbl{color:var(--muted);font-size:12px;margin-right:6px}
   input[type=search]{background:#111;border:1px solid #3a3a3a;color:var(--fg);font:inherit;font-size:12px;padding:4px 8px;width:190px}
+  input[type=number]{background:#111;border:1px solid #3a3a3a;color:var(--fg);font:inherit;font-size:12px;padding:3px 6px;width:56px}
   .btn{background:#111;border:1px solid #3a3a3a;color:var(--fg);font:inherit;font-size:12px;padding:4px 10px;cursor:pointer}
   .btn:hover{border-color:var(--amber);color:var(--amber)}
   .btn.primary{border-color:var(--amber);color:var(--amber)}
@@ -41,7 +48,7 @@
   thead th{position:sticky;top:0;background:var(--bar);color:var(--amber);font-weight:500;font-size:12px;text-align:right;padding:6px 10px;border-bottom:1px solid var(--line);white-space:nowrap;cursor:pointer;user-select:none}
   thead th.l{text-align:left}
   thead th .arr{color:var(--fg);margin-left:3px}
-  tbody td{padding:3px 10px;border-bottom:1px solid var(--line2);text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+  tbody td{padding:3px 10px;border-bottom:1px solid var(--line2);text-align:right;white-space:nowrap}
   tbody td.l{text-align:left}
   tbody tr:hover td{background:var(--hover)}
   tbody tr.sel td{background:var(--sel)}
@@ -59,29 +66,59 @@
   td.ret span{position:relative;z-index:1}
   .mut{color:var(--muted)}
   .flag{color:var(--amber);margin-left:4px;font-size:11px}
+  .card{border:1px solid var(--line);background:var(--panel);margin:0 0 14px}
+  .card .hd{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;padding:8px 10px;border-bottom:1px solid var(--line);background:var(--bar)}
+  .card .hd h2{font-size:14px;font-weight:600;margin:0 8px 0 0;color:var(--fg)}
+  #chart{height:720px;width:100%}
+  .note{font-size:12px;color:var(--muted);padding:6px 10px 10px}
   details{margin-top:18px;border:1px solid var(--line);background:var(--panel)}
   details summary{cursor:pointer;padding:8px 10px;color:var(--amber);font-size:12px}
   details .body{padding:4px 14px 12px;font-size:12px;color:#cfcfcf}
   details .body p{margin:6px 0}
   details .body ul{margin:6px 0;padding-left:18px}
   .chg-add{color:var(--pos)} .chg-rem{color:var(--neg)}
-  @media (max-width:640px){.wrap{padding:10px 8px 30px} .opt{display:none} table{min-width:0} td.name{min-width:0;white-space:normal} tbody td,thead th{padding-left:6px;padding-right:6px} input[type=search]{width:140px}}
+  [hidden]{display:none !important}
+  @media (max-width:640px){.wrap{padding:10px 8px 30px} .opt{display:none} table{min-width:0} td.name{min-width:0;white-space:normal} tbody td,thead th{padding-left:6px;padding-right:6px} input[type=search]{width:140px} #chart{height:560px}}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <h1>S&amp;P 500 Price Returns · Sector › Industry › Security</h1>
+    <h1>S&amp;P 500 · Sector › Industry › Security</h1>
     <div class="asof" id="asof">Loading…</div>
   </header>
+
+  <nav class="tabs" role="tablist">
+    <button data-tab="returns" class="on" role="tab">Price returns</button>
+    <button data-tab="ma" role="tab">Moving averages</button>
+  </nav>
+
+  <!-- ===== Moving-average breadth chart (MA tab only) ===== -->
+  <section id="ma-top" hidden>
+    <div class="ref" id="ma-tiles"></div>
+    <div class="card">
+      <div class="hd">
+        <h2>% of S&amp;P 500 constituents above their moving average</h2>
+        <span><span class="lbl">Show</span><span class="seg multi" id="seg-series">
+          <button data-v="20" class="on">20-day</button><button data-v="50" class="on">50-day</button><button data-v="100">100-day</button><button data-v="200" class="on">200-day</button></span></span>
+        <span><span class="lbl">Range</span><span class="seg" id="seg-range">
+          <button data-v="6">6M</button><button data-v="12">1Y</button><button data-v="24">2Y</button><button data-v="0" class="on">All</button></span></span>
+        <span><span class="lbl">Reference lines</span><input type="number" id="ref-hi" value="80" min="0" max="100" aria-label="Upper reference line"> <input type="number" id="ref-lo" value="30" min="0" max="100" aria-label="Lower reference line"></span>
+      </div>
+      <div id="chart"></div>
+      <div class="note" id="chart-note"></div>
+    </div>
+  </section>
 
   <div class="ref" id="ref"></div>
 
   <div class="controls">
     <span><span class="lbl">Level 2</span><span class="seg" id="seg-group">
       <button data-v="industry_group">Industry group</button><button data-v="industry" class="on">Industry</button></span></span>
-    <span><span class="lbl">Group return</span><span class="seg" id="seg-agg">
+    <span data-tabonly="returns"><span class="lbl">Group return</span><span class="seg" id="seg-agg">
       <button data-v="cap" class="on">Cap-wtd</button><button data-v="ew">Equal-wtd</button><button data-v="med">Median</button></span></span>
+    <span data-tabonly="ma" hidden><span class="lbl">Securities show</span><span class="seg" id="seg-mashow">
+      <button data-v="dist" class="on">% vs average</button><button data-v="level">Average level</button></span></span>
     <span><span class="lbl">View</span><span class="seg" id="seg-view">
       <button data-v="tree" class="on">Tree</button><button data-v="flat">Ranked list</button></span></span>
     <span><span class="lbl">Expand</span><span class="seg" id="seg-depth">
@@ -93,16 +130,7 @@
 
   <div class="tablewrap">
     <table id="tbl">
-      <thead><tr>
-        <th class="l" data-k="name">Name</th>
-        <th class="l opt" data-k="ticker">Ticker</th>
-        <th data-k="weight">Wt %</th>
-        <th data-k="r6m">6M Px Rtn</th>
-        <th data-k="r12m">12M Px Rtn</th>
-        <th class="opt" data-k="n">Names</th>
-        <th class="opt" data-k="down6">% Down 6M</th>
-        <th class="opt" data-k="down12">% Down 12M</th>
-      </tr></thead>
+      <thead><tr id="thr"></tr></thead>
       <tbody id="tb"></tbody>
     </table>
   </div>
@@ -113,13 +141,42 @@
 
 <script>
 (function(){
-  const S = {group:'industry', agg:'cap', view:'tree', depth:1, sortK:'r6m', sortDir:1, q:'', open:new Set(), closed:new Set(), sel:null};
-  let D = null;
+  const S = {tab:'returns', group:'industry', agg:'cap', mashow:'dist', view:'tree', depth:1,
+             sort:{returns:{k:'r6m',dir:1}, ma:{k:'m20',dir:1}}, q:'', open:new Set(), closed:new Set(), sel:null,
+             series:new Set(['20','50','200']), range:0, refHi:80, refLo:30};
+  let D = null, B = null, plotlyLoading = null;
+  const MAS = ['20','50','100','200'];
   const $ = (id)=>document.getElementById(id);
   const esc = (s)=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const fmtD = (iso)=>{ if(!iso) return '—'; const [y,m,d]=iso.split('-'); return `${+m}/${+d}/${y.slice(2)}`; };
   const pct = (v,dp=1)=> v==null ? '—' : (v*100>0?'+':'')+(v*100).toFixed(dp)+'%';
   const cls = (v)=> v==null ? 'na' : v>0.0005 ? 'pos' : v<-0.0005 ? 'neg' : 'mut';
+  const px2 = (v)=> v==null ? '—' : v>=1000 ? v.toLocaleString(undefined,{maximumFractionDigits:0}) : v.toFixed(2);
+
+  // ---------- column sets ----------
+  const COLS = {
+    returns: [
+      {k:'name', label:'Name', l:true, kind:'name'},
+      {k:'ticker', label:'Ticker', l:true, opt:true, kind:'tic'},
+      {k:'weight', label:'Wt %', kind:'wt'},
+      {k:'r6m', label:'6M Px Rtn', kind:'ret'},
+      {k:'r12m', label:'12M Px Rtn', kind:'ret'},
+      {k:'n', label:'Names', opt:true, kind:'int'},
+      {k:'down6', label:'% Down 6M', opt:true, kind:'share'},
+      {k:'down12', label:'% Down 12M', opt:true, kind:'share'},
+    ],
+    ma: [
+      {k:'name', label:'Name', l:true, kind:'name'},
+      {k:'ticker', label:'Ticker', l:true, opt:true, kind:'tic'},
+      {k:'price', label:'Price', opt:true, kind:'price'},
+      {k:'m20', label:'20-day', kind:'ma', n:'20'},
+      {k:'m50', label:'50-day', kind:'ma', n:'50'},
+      {k:'m100', label:'100-day', kind:'ma', n:'100'},
+      {k:'m200', label:'200-day', kind:'ma', n:'200'},
+      {k:'above', label:'# Above', opt:true, kind:'above'},
+      {k:'n', label:'Names', opt:true, kind:'int'},
+    ]
+  };
 
   // ---------- aggregation ----------
   function aggRet(rows,k){
@@ -127,22 +184,25 @@
     if(!v.length) return null;
     if(S.agg==='ew') return v.reduce((a,r)=>a+r[k],0)/v.length;
     if(S.agg==='med'){ const s=v.map(r=>r[k]).sort((a,b)=>a-b); const m=s.length>>1; return s.length%2?s[m]:(s[m-1]+s[m])/2; }
-    // cap-weighted buy-and-hold: start weights backed out from current weights and each name's return
     let num=0, den=0; v.forEach(r=>{ num+=r.weight; den+=r.weight/(1+r[k]); });
     return den ? num/den-1 : null;
   }
   function stats(rows){
     const d6=rows.filter(r=>r.r6m!=null), d12=rows.filter(r=>r.r12m!=null);
-    return {
+    const o = {
       n: rows.length,
       weight: rows.reduce((a,r)=>a+(r.weight||0),0),
       r6m: aggRet(rows,'r6m'), r12m: aggRet(rows,'r12m'),
       down6: d6.length ? d6.filter(r=>r.r6m<0).length/d6.length : null,
       down12: d12.length ? d12.filter(r=>r.r12m<0).length/d12.length : null,
     };
+    // share of names above each moving average (groups); stored in the same keys stocks use
+    MAS.forEach(n=>{ const e=rows.filter(r=>r['d'+n]!=null); o['m'+n] = e.length ? e.filter(r=>r['d'+n]>0).length/e.length : null; o['e'+n]=e.length; });
+    const ea=rows.filter(r=>r.above!=null); o.above = ea.length ? ea.reduce((a,r)=>a+r.above,0)/ea.length : null;
+    return o;
   }
   function cmp(a,b){
-    const k=S.sortK, dir=S.sortDir;
+    const {k,dir}=S.sort[S.tab];
     let x=a[k], y=b[k];
     if(k==='name'||k==='ticker'){ x=(x||'').toLowerCase(); y=(y||'').toLowerCase(); return x<y?-dir:x>y?dir:0; }
     if(x==null && y==null) return 0; if(x==null) return 1; if(y==null) return -1;
@@ -153,6 +213,8 @@
     const q=S.q.toLowerCase();
     return r.ticker.toLowerCase().includes(q) || r.name.toLowerCase().includes(q);
   }
+  function stockNode(r){ const o={...r, id:'s:'+r.ticker, n:null, down6:null, down12:null};
+    MAS.forEach(n=>{ o['m'+n]=r['d'+n]; }); return o; }
   function build(){
     const rows = D.rows.filter(matches);
     const bySec = new Map();
@@ -164,8 +226,8 @@
     const tree=[];
     bySec.forEach((m,sec)=>{
       const kids=[]; let all=[];
-      m.forEach((rs,ind)=>{ all=all.concat(rs); kids.push({id:sec+'|'+ind, name:ind, rows:rs, ...stats(rs), kids:rs.map(r=>({...r, n:null, down6:null, down12:null}))}); });
-      tree.push({id:sec, name:sec, rows:all, ...stats(all), kids});
+      m.forEach((rs,ind)=>{ all=all.concat(rs); kids.push({id:sec+'|'+ind, name:ind, ...stats(rs), kids:rs.map(stockNode)}); });
+      tree.push({id:sec, name:sec, ...stats(all), kids});
     });
     tree.sort(cmp); tree.forEach(s=>{ s.kids.sort(cmp); s.kids.forEach(i=>i.kids.sort(cmp)); });
     return {tree, total: stats(rows), rows};
@@ -177,36 +239,50 @@
     return level < S.depth;
   }
 
-  // ---------- render ----------
-  function cell(v,isRet){
-    if(!isRet) return `<td>${v}</td>`;
-    const a=v==null?0:Math.min(Math.abs(v)/0.5,1);
-    const bg = v==null ? '' : v<0 ? `rgba(255,75,75,${(a*0.28).toFixed(3)})` : `rgba(51,208,107,${(a*0.22).toFixed(3)})`;
-    return `<td class="ret"><div class="heat" style="background:${bg}"></div><span class="${cls(v)}">${pct(v)}</span></td>`;
+  // ---------- cells ----------
+  function heat(v,scale,isShare){
+    if(v==null) return '';
+    if(isShare){ const d=v-0.5, a=Math.min(Math.abs(d)/0.5,1); return d<0?`rgba(255,75,75,${(a*0.30).toFixed(3)})`:`rgba(51,208,107,${(a*0.24).toFixed(3)})`; }
+    const a=Math.min(Math.abs(v)/scale,1);
+    return v<0 ? `rgba(255,75,75,${(a*0.28).toFixed(3)})` : `rgba(51,208,107,${(a*0.22).toFixed(3)})`;
   }
-  function rowHtml(node,level,hasKids,open){
-    const pad = 4 + level*18;
+  function hcell(text,bg,c,opt){ return `<td class="ret${opt?' opt':''}"><div class="heat" style="background:${bg}"></div><span class="${c}">${text}</span></td>`; }
+  function cellFor(col,node,level){
+    const v=node[col.k], o=col.opt?' opt':'';
+    switch(col.kind){
+      case 'tic': return `<td class="l tic${o}">${level===2?esc(node.ticker):''}</td>`;
+      case 'wt': return `<td${o?' class="opt"':''}>${node.weight!=null?node.weight.toFixed(2):'—'}</td>`;
+      case 'ret': return hcell(pct(v),heat(v,0.5),cls(v),col.opt);
+      case 'int': return `<td class="${o.trim()}">${v!=null?v:''}</td>`;
+      case 'share': return `<td class="${o.trim()}">${v!=null?Math.round(v*100)+'%':''}</td>`;
+      case 'price': return `<td class="${o.trim()}">${level===2?px2(node.price):''}</td>`;
+      case 'above': return `<td class="${o.trim()}">${v==null?'':level===2?`${v} / 4`:v.toFixed(1)}</td>`;
+      case 'ma':
+        if(level!==2){ // group or total: share of names above
+          return hcell(v==null?'—':Math.round(v*100)+'%', heat(v,0,true), v==null?'na':v>=0.5?'pos':'neg', col.opt);
+        }
+        if(S.mashow==='level'){ const lv=node['ma'+col.n]; return hcell(px2(lv), '', v==null?'na':v>0?'pos':'neg', col.opt); }
+        return hcell(pct(v), heat(v,0.15), cls(v), col.opt);
+    }
+  }
+  function rowHtml(node,level,hasKids,open,padOverride){
+    const pad = padOverride!=null ? padOverride : 4 + level*18;
     const car = hasKids ? (open?'▾':'▸') : '';
     const flag = node.flag ? `<span class="flag">${esc(node.flag)}</span>` : '';
-    const nm = level===2 ? esc(node.name) : esc(node.name);
+    const cols=COLS[S.tab];
     return `<tr class="l${level}${S.sel===node.id?' sel':''}" data-id="${esc(node.id)}" data-kids="${hasKids?1:0}">
-      <td class="l name" style="padding-left:${pad}px"><span class="car">${car}</span>${nm}${flag}</td>
-      <td class="l tic opt">${level===2?esc(node.ticker):''}</td>
-      <td>${node.weight!=null?(node.weight).toFixed(2):'—'}</td>
-      ${cell(node.r6m,true)}${cell(node.r12m,true)}
-      <td class="opt">${node.n!=null?node.n:''}</td>
-      <td class="opt">${node.down6!=null?Math.round(node.down6*100)+'%':''}</td>
-      <td class="opt">${node.down12!=null?Math.round(node.down12*100)+'%':''}</td>
-    </tr>`;
+      <td class="l name" style="padding-left:${pad}px"><span class="car">${car}</span>${esc(node.name)}${flag}</td>
+      ${cols.slice(1).map(c=>cellFor(c,node,level)).join('')}</tr>`;
   }
   function render(){
+    const cols=COLS[S.tab], sort=S.sort[S.tab];
+    $('thr').innerHTML = cols.map(c=>`<th class="${c.l?'l':''}${c.opt?' opt':''}" data-k="${c.k}">${esc(c.label)}${c.k===sort.k?`<span class="arr">${sort.dir>0?'▲':'▼'}</span>`:''}</th>`).join('');
     const {tree,total,rows} = build();
     const out=[];
-    out.push(`<tr class="total"><td class="l name" style="padding-left:22px">${S.q?'Filtered names':'S&amp;P 500 constituents'}</td><td class="opt"></td><td>${total.weight.toFixed(2)}</td>${cell(total.r6m,true)}${cell(total.r12m,true)}<td class="opt">${total.n}</td><td class="opt">${total.down6!=null?Math.round(total.down6*100)+'%':''}</td><td class="opt">${total.down12!=null?Math.round(total.down12*100)+'%':''}</td></tr>`);
+    const tot={...total, id:'total', name: S.q?'Filtered names':'S&P 500 constituents'};
+    out.push(rowHtml(tot,0,false,false,22).replace('class="l0','class="total'));
     if(S.view==='flat'){
-      rows.map(r=>({...r,id:'s:'+r.ticker,n:null,down6:null,down12:null})).sort(cmp).forEach(r=>{
-        out.push(rowHtml({...r, name:r.name+' ('+r.ticker+')  ·  '+r[S.group]},2,false,false).replace('padding-left:40px','padding-left:22px'));
-      });
+      rows.map(stockNode).sort(cmp).forEach(r=> out.push(rowHtml({...r, name:r.name+' ('+r.ticker+')  ·  '+r[S.group]},2,false,false,22)));
     } else {
       tree.forEach(s=>{
         const o0=isOpen(s.id,0); out.push(rowHtml(s,0,true,o0));
@@ -214,28 +290,24 @@
         s.kids.forEach(i=>{
           const o1=isOpen(i.id,1); out.push(rowHtml(i,1,true,o1));
           if(!o1) return;
-          i.kids.forEach(r=> out.push(rowHtml({...r,id:'s:'+r.ticker},2,false,false)));
+          i.kids.forEach(r=> out.push(rowHtml(r,2,false,false)));
         });
       });
     }
     $('tb').innerHTML = out.join('');
-    document.querySelectorAll('thead th').forEach(th=>{
-      const k=th.dataset.k; const base=th.textContent.replace(/[▲▼]/g,'').trim();
-      th.innerHTML = esc(base) + (k===S.sortK?`<span class="arr">${S.sortDir>0?'▲':'▼'}</span>`:'');
-    });
   }
 
+  // ---------- header, tiles, notes ----------
   function header(){
     $('asof').innerHTML = `Constituents: SPY holdings as of <b>${fmtD(D.holdings_asof)}</b> (${D.count} names) · Prices: close <b>${fmtD(D.price_asof)}</b> · 6M base <b>${fmtD(D.base_6m)}</b> · 12M base <b>${fmtD(D.base_12m)}</b> · Built ${new Date(D.generated_at).toLocaleString([], {month:'numeric',day:'numeric',hour:'numeric',minute:'2-digit'})}`;
     const R=D.reference||{};
     const tile=(lab,o)=> o?`<div class="tile"><span class="k">${lab}</span> &nbsp;6M <span class="${cls(o.r6m)}">${pct(o.r6m)}</span> &nbsp;12M <span class="${cls(o.r12m)}">${pct(o.r12m)}</span></div>`:'';
-    $('ref').innerHTML = tile('SPY (cap-wtd)',R.SPY)+tile('RSP (equal-wtd)',R.RSP)+
-      `<div class="tile"><span class="k">Default sort</span> worst 6M first · click any column header to re-sort</div>`;
-    // changes
+    $('ref').innerHTML = S.tab==='returns'
+      ? tile('SPY (cap-wtd)',R.SPY)+tile('RSP (equal-wtd)',R.RSP)+`<div class="tile"><span class="k">Default sort</span> worst 6M first · click any column header to re-sort</div>`
+      : `<div class="tile"><span class="k">Table</span> sector and industry rows show the % of names above each average; securities show price vs the average · sorted by 20-day, lowest first</div>`;
     const ch=D.changes||[];
     $('changes-body').innerHTML = ch.length ? ch.map(c=>`<p><b>SPY file ${fmtD(c.holdings_asof)}</b>: ${c.added.map(a=>`<span class="chg-add">+ ${esc(a.ticker)} ${esc(a.name)}</span>`).join(', ')||'no adds'}; ${c.removed.map(a=>`<span class="chg-rem">− ${esc(a.ticker)} ${esc(a.name)}</span>`).join(', ')||'no deletions'}</p>`).join('')
       : `<p>No adds or deletions recorded yet. Each rebuild compares the new SPY holdings file with the previous build and logs any names that entered or left.</p>`;
-    // method
     const noHist=D.rows.filter(r=>r.r6m==null||r.r12m==null);
     const spins=(D.spinoff_adjustments||[]);
     const big=D.large_daily_moves||{};
@@ -245,23 +317,112 @@
       ${D.overrides&&Object.keys(D.overrides).length?`<p><b>Manual reclassifications</b>: ${Object.entries(D.overrides).map(([t,s])=>esc(t)+' → '+esc(s)).join(', ')}.</p>`:''}
       <p><b>Returns</b>: ${esc(D.sources.prices)}. Price return = last close ÷ close on or before the base date − 1. Base dates are the last session on or before the same calendar day 6 and 12 months earlier.</p>
       <p><b>Group returns</b>: Cap-wtd is a buy-and-hold return using start-of-period weights implied by current weights and each name's return. Equal-wtd is the simple average. Median is the middle name. Names without history for a period are left out of that period's group figures. % Down is the share of names with a negative return.</p>
-      <p><b>Survivorship</b>: only current constituents are shown, so names that left the index during the period (often the worst performers) are not in the group figures.</p>
+      <p><b>Moving averages</b>: simple averages of daily closes over the last 20, 50, 100 and 200 sessions. A name counts as above when its close is above its average. Names with fewer sessions than the window (recent listings) are left out of that average's count. The breadth chart counts, for each day since 9/30/22, the share of current constituents above each average.</p>
+      <p><b>Survivorship</b>: only current constituents are used, in both tabs. Names that left the index (often weak performers) are not counted, so past returns and past breadth readings run somewhat higher than an index-membership-as-of-each-date calculation, such as StockCharts' $SPXA50R. Recent readings are close to those figures.</p>
       ${spins.length?`<p><b>Spin-off adjustments</b> (parent prices before the ex-date scaled so the distribution does not show as a loss):</p><ul>${spins.map(s=>`<li>${esc(s.parent)} → ${esc(s.child)}, ex ${fmtD(s.ex)}: ${esc(s.note)} (factor ${s.factor})</li>`).join('')}</ul>`:''}
-      ${noHist.length?`<p><b>Not enough history</b> (listed after a base date): ${noHist.map(r=>esc(r.ticker)).join(', ')}</p>`:''}
-      ${Object.keys(big).length?`<p><b>Single-day moves over 30% down or 90% up</b> (checked as real moves, not data errors): ${Object.entries(big).map(([t,v])=>esc(t)+' '+esc(v.join('; '))).join(' · ')}</p>`:''}
-      <p><b>Refresh</b>: a GitHub Actions job rebuilds the data every weekday morning. It re-pulls the SPY holdings file (catching adds and deletions) and recomputes every return. The Refresh button loads the newest build and reports any constituent changes against what this page had loaded. The repo owner can start a fresh pull at any time from the <a href="https://github.com/jcheels1/SP500-returns/actions/workflows/refresh.yml" style="color:var(--amber)">Refresh data workflow</a> (Run workflow); the page picks it up a few minutes after the job finishes. Code: <a href="https://github.com/jcheels1/SP500-returns" style="color:var(--amber)">github.com/jcheels1/SP500-returns</a>.</p>`;
+      ${noHist.length?`<p><b>Not enough history for 6M or 12M</b> (listed after a base date): ${noHist.map(r=>esc(r.ticker)).join(', ')}</p>`:''}
+      ${Object.keys(big).length?`<p><b>Single-day moves over 30% down or 90% up in the last 13 months</b> (checked as real moves, not data errors): ${Object.entries(big).map(([t,v])=>esc(t)+' '+esc(v.join('; '))).join(' · ')}</p>`:''}
+      <p><b>Refresh</b>: a GitHub Actions job rebuilds the data every weekday morning. It re-pulls the SPY holdings file (catching adds and deletions) and recomputes every return and moving average. The Refresh button loads the newest build and reports any constituent changes against what this page had loaded. The repo owner can start a fresh pull at any time from the <a href="https://github.com/jcheels1/SP500-returns/actions/workflows/refresh.yml" style="color:var(--amber)">Refresh data workflow</a> (Run workflow); the page picks it up a few minutes after the job finishes. Code: <a href="https://github.com/jcheels1/SP500-returns" style="color:var(--amber)">github.com/jcheels1/SP500-returns</a>.</p>`;
+  }
+  function maTiles(){
+    if(!B){ $('ma-tiles').innerHTML=''; return; }
+    const n=B.dates.length-1;
+    const back=(k)=>{ const i=Math.max(0,n-k); return i; };
+    $('ma-tiles').innerHTML = MAS.map(m=>{
+      const v=B.pct[m][n], w=B.pct[m][back(5)], mo=B.pct[m][back(21)];
+      const d1=(v!=null&&w!=null)?v-w:null, d2=(v!=null&&mo!=null)?v-mo:null;
+      const sg=(x)=>x==null?'—':(x>0?'+':'')+x.toFixed(0)+' pts';
+      return `<div class="tile"><span class="k">Above ${m}-day</span> &nbsp;<b>${v==null?'—':v.toFixed(0)+'%'}</b> &nbsp;<span class="k">1W</span> <span class="${d1>0?'pos':d1<0?'neg':'mut'}">${sg(d1)}</span> &nbsp;<span class="k">1M</span> <span class="${d2>0?'pos':d2<0?'neg':'mut'}">${sg(d2)}</span></div>`;
+    }).join('') + `<div class="tile"><span class="k">As of</span> ${fmtD(B.dates[n])} close</div>`;
+    $('chart-note').textContent = `Daily since ${fmtD(B.dates[0])}. Top: SPY daily candles with 50- and 200-day averages. Bottom: share of current S&P 500 constituents closing above each moving average. Click legend items to hide or show a line; drag across the chart to zoom, double-click to reset.`;
   }
 
+  // ---------- breadth chart ----------
+  function loadPlotly(){
+    if(window.Plotly) return Promise.resolve();
+    if(plotlyLoading) return plotlyLoading;
+    plotlyLoading = new Promise((res,rej)=>{ const s=document.createElement('script'); s.src='https://cdn.plot.ly/plotly-2.35.2.min.js'; s.onload=res; s.onerror=()=>rej(new Error('chart library failed to load')); document.head.appendChild(s); });
+    return plotlyLoading;
+  }
+  const SERIES_COLOR = {'20':'#f5f5f5','50':'#22d3ee','100':'#a78bfa','200':'#f472b6'};
+  function holidays(dates){
+    const have=new Set(dates), out=[]; const d=new Date(dates[0]+'T00:00:00Z'), end=new Date(dates[dates.length-1]+'T00:00:00Z');
+    for(; d<=end; d.setUTCDate(d.getUTCDate()+1)){ const w=d.getUTCDay(); const iso=d.toISOString().slice(0,10); if(w!==0&&w!==6&&!have.has(iso)) out.push(iso); }
+    return out;
+  }
+  function drawChart(){
+    if(!B || S.tab!=='ma') return;
+    loadPlotly().then(()=>{
+      const x=B.dates, n=x.length;
+      let i0=0;
+      if(S.range){ const end=new Date(x[n-1]+'T00:00:00Z'); end.setUTCMonth(end.getUTCMonth()-S.range); const iso=end.toISOString().slice(0,10); i0=Math.max(0,x.findIndex(d=>d>=iso)); }
+      const sl=(a)=>a.slice(i0);
+      const X=sl(x), sp=B.spy;
+      const lows=sl(sp.l).concat(sl(sp.sma200),sl(sp.sma50)).filter(v=>v!=null), highs=sl(sp.h).concat(sl(sp.sma200),sl(sp.sma50)).filter(v=>v!=null);
+      const lo=Math.min(...lows), hi=Math.max(...highs), pad=(hi-lo)*0.04;
+      const traces=[
+        {type:'candlestick', x:X, open:sl(sp.o), high:sl(sp.h), low:sl(sp.l), close:sl(sp.c), name:'SPY', xaxis:'x', yaxis:'y',
+         increasing:{line:{color:'#22c55e',width:1}, fillcolor:'#22c55e'}, decreasing:{line:{color:'#ef4444',width:1}, fillcolor:'#ef4444'}, showlegend:false, hoverlabel:{namelength:0}},
+        {type:'scatter', mode:'lines', x:X, y:sl(sp.sma50), name:'SPY 50-day', line:{color:'#facc15',width:1.5}, xaxis:'x', yaxis:'y', hovertemplate:'%{y:.2f}'},
+        {type:'scatter', mode:'lines', x:X, y:sl(sp.sma200), name:'SPY 200-day', line:{color:'#60a5fa',width:1.5}, xaxis:'x', yaxis:'y', hovertemplate:'%{y:.2f}'},
+      ];
+      MAS.forEach(m=> traces.push({type:'scatter', mode:'lines', x:X, y:sl(B.pct[m]), name:`% above ${m}-day`, visible: S.series.has(m)?true:'legendonly',
+        line:{color:SERIES_COLOR[m], width: m==='20'?1.6:1.4}, xaxis:'x', yaxis:'y2', hovertemplate:'%{y:.0f}%'}));
+      const refLine=(y,color)=>({type:'line', xref:'paper', x0:0, x1:1, yref:'y2', y0:y, y1:y, line:{color, width:2, dash:'solid'}, opacity:0.55});
+      const layout={
+        paper_bgcolor:'#000', plot_bgcolor:'#000', font:{family:'Inter, sans-serif', color:'#cfcfcf', size:12},
+        margin:{l:56, r:56, t:10, b:36}, hovermode:'x unified', dragmode:'zoom',
+        legend:{orientation:'h', x:0, y:1.04, bgcolor:'rgba(0,0,0,0)', font:{size:11}},
+        xaxis:{type:'date', rangebreaks:[{bounds:['sat','mon']},{values:holidays(X)}], rangeslider:{visible:false}, gridcolor:'#1c1c1c', linecolor:'#333', showspikes:true, spikemode:'across', spikecolor:'#555', spikethickness:1, anchor:'y2'},
+        yaxis:{domain:[0.43,1], side:'right', gridcolor:'#1c1c1c', range:[lo-pad, hi+pad], title:{text:'SPY', font:{size:11}}, tickformat:',.0f'},
+        yaxis2:{domain:[0,0.37], side:'right', range:[0,100], gridcolor:'#1c1c1c', ticksuffix:'%', dtick:20, title:{text:'% above', font:{size:11}}},
+        shapes:[refLine(S.refHi,'#f87171'), refLine(S.refLo,'#4ade80')],
+        annotations:[{xref:'paper', yref:'paper', x:0, y:0.395, xanchor:'left', yanchor:'bottom', showarrow:false, text:'S&P 500 constituents above moving average', font:{size:12, color:'#e8e8e8'}}],
+      };
+      Plotly.react('chart', traces, layout, {displaylogo:false, responsive:true, modeBarButtonsToRemove:['lasso2d','select2d','autoScale2d']});
+      const el=$('chart');
+      if(!el._legendHooked){ el._legendHooked=true; el.on('plotly_legendclick', ev=>{
+        const name=ev.data[ev.curveNumber].name||''; const m=(name.match(/above (\d+)-day/)||[])[1];
+        if(m){ S.series.has(m)?S.series.delete(m):S.series.add(m); syncSeriesButtons(); }
+      }); }
+    }).catch(e=>{ $('chart').innerHTML=`<div class="note">Chart could not load: ${esc(e.message)}</div>`; });
+  }
+  function syncSeriesButtons(){ $('seg-series').querySelectorAll('button').forEach(b=>b.classList.toggle('on',S.series.has(b.dataset.v))); }
+
+  // ---------- tabs ----------
+  function setTab(t){
+    S.tab = t==='ma'?'ma':'returns';
+    document.querySelectorAll('.tabs button').forEach(b=>b.classList.toggle('on',b.dataset.tab===S.tab));
+    $('ma-top').hidden = S.tab!=='ma';
+    document.querySelectorAll('[data-tabonly]').forEach(e=>{ e.hidden = e.dataset.tabonly!==S.tab; });
+    if(D){ header(); render(); }
+    if(S.tab==='ma'){ maTiles(); drawChart(); }
+    const h = S.tab==='ma' ? '#ma' : '#returns';
+    if(location.hash!==h) history.replaceState(null,'',h);
+  }
+
+  // ---------- data ----------
+  function prep(nd){
+    const flagMap={};
+    (nd.spinoff_adjustments||[]).forEach(s=>flagMap[s.parent]='spin-adj');
+    nd.rows.forEach(x=>{
+      if(flagMap[x.ticker]) x.flag=flagMap[x.ticker];
+      if(x.r6m==null&&x.r12m==null&&x.price!=null) x.flag='new listing';
+      let ab=0, any=false;
+      MAS.forEach(n=>{ const m=x['ma'+n]; x['d'+n] = (m!=null && x.price!=null) ? x.price/m-1 : null; if(x['d'+n]!=null){ any=true; if(x['d'+n]>0) ab++; } });
+      x.above = any ? ab : null;
+    });
+    return nd;
+  }
   async function load(initial){
     const btn=$('refresh'); btn.disabled=true;
     if(!initial) $('status').innerHTML='Checking for a newer build and constituent changes…';
     try{
-      const r = await fetch('data.json?t='+Date.now(), {cache:'no-store'});
+      const t0=Date.now();
+      const [r, rb] = await Promise.all([fetch('data.json?t='+t0,{cache:'no-store'}), fetch('breadth.json?t='+t0,{cache:'no-store'}).catch(()=>null)]);
       if(!r.ok) throw new Error('HTTP '+r.status);
-      const nd = await r.json();
-      const flagMap={};
-      (nd.spinoff_adjustments||[]).forEach(s=>flagMap[s.parent]='spin-adj');
-      nd.rows.forEach(x=>{ if(flagMap[x.ticker]) x.flag=flagMap[x.ticker]; if(x.r6m==null&&x.r12m==null&&x.price!=null) x.flag='new listing'; });
+      const nd = prep(await r.json());
+      if(rb && rb.ok){ try{ B = await rb.json(); }catch(e){ B=null; } }
       let msg;
       const t=new Date().toLocaleTimeString([], {hour:'numeric',minute:'2-digit'});
       if(D && !initial){
@@ -274,6 +435,7 @@
         msg = `${nd.count} constituents loaded. Click a sector or industry to expand or collapse it.`;
       }
       D=nd; header(); render(); $('status').innerHTML=msg;
+      if(S.tab==='ma'){ maTiles(); drawChart(); }
     }catch(e){
       $('status').innerHTML = `<span class="warn">Could not load data (${esc(e.message)}).</span>`;
     }finally{ btn.disabled=false; }
@@ -286,15 +448,26 @@
       $(id).querySelectorAll('button').forEach(x=>x.classList.toggle('on',x===b));
       S[key]= num ? +b.dataset.v : b.dataset.v;
       if(key==='depth'){ S.open.clear(); S.closed.clear(); }
+      if(key==='range'){ drawChart(); return; }
       render();
     });
   }
-  seg('seg-group','group'); seg('seg-agg','agg'); seg('seg-view','view'); seg('seg-depth','depth',true);
+  seg('seg-group','group'); seg('seg-agg','agg'); seg('seg-view','view'); seg('seg-depth','depth',true); seg('seg-mashow','mashow'); seg('seg-range','range',true);
+  $('seg-series').addEventListener('click',e=>{
+    const b=e.target.closest('button'); if(!b) return; const v=b.dataset.v;
+    S.series.has(v)?S.series.delete(v):S.series.add(v); syncSeriesButtons(); drawChart();
+  });
+  ['ref-hi','ref-lo'].forEach(id=>$(id).addEventListener('change',()=>{
+    const hi=+$('ref-hi').value, lo=+$('ref-lo').value;
+    if(!isNaN(hi)) S.refHi=Math.max(0,Math.min(100,hi)); if(!isNaN(lo)) S.refLo=Math.max(0,Math.min(100,lo)); drawChart();
+  }));
+  document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>setTab(b.dataset.tab)));
+  window.addEventListener('hashchange',()=>setTab(location.hash.replace('#','')));
   $('q').addEventListener('input',e=>{ S.q=e.target.value.trim(); render(); });
   $('refresh').addEventListener('click',()=>load(false));
   document.querySelector('thead').addEventListener('click',e=>{
-    const th=e.target.closest('th'); if(!th) return; const k=th.dataset.k;
-    if(S.sortK===k) S.sortDir*=-1; else { S.sortK=k; S.sortDir = (k==='name'||k==='ticker')?1:(k==='weight'||k==='n'||k.startsWith('down'))?-1:1; }
+    const th=e.target.closest('th'); if(!th) return; const k=th.dataset.k; const s=S.sort[S.tab];
+    if(s.k===k) s.dir*=-1; else { s.k=k; s.dir = (k==='name'||k==='ticker')?1:(k==='weight'||k==='n'||k==='price'||k.startsWith('down'))?-1:1; }
     render();
   });
   $('tb').addEventListener('click',e=>{
@@ -307,6 +480,7 @@
     }
     render();
   });
+  if(location.hash==='#ma') setTab('ma');
   load(true);
 })();
 </script>

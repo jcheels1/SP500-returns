@@ -2,7 +2,7 @@
 
 Live page: https://jcheels1.github.io/SP500-returns/
 
-A dashboard of 6-month and 12-month price returns for every S&P 500 constituent, nested by GICS sector › industry (or industry group) › security, with cap-weighted, equal-weighted and median group returns and the share of names down in each group.
+Two tabs: (1) 6-month and 12-month price returns for every S&P 500 constituent, nested by GICS sector › industry (or industry group) › security, with cap-weighted, equal-weighted and median group returns and the share of names down in each group; (2) moving averages: a daily chart since 9/30/2022 of the share of constituents above their 20-, 50-, 100- and 200-day simple moving averages (with SPY candles), and each stock's position against those averages, with group-level breadth. `breadth.json` holds the daily series.
 
 ## Data
 - **Constituents and weights:** State Street SPY daily holdings file.
