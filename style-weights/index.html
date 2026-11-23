@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>S&amp;P 500 vs Value vs Growth — Sector, Industry Group and Company Weights</title>
+<title>S&amp;P 500 vs Value vs Growth — Sector, Industry and Company Weights</title>
 <style>
 :root{
   --page:#f9f9f7; --surface:#fcfcfb; --ink:#0b0b0b; --ink2:#52514e; --muted:#8a8984;
@@ -140,7 +140,7 @@ table.m-all .splitbar{width:50px}
         </div>
         <div class="seg" id="chartLevel">
           <button data-v="0" aria-pressed="true">Sectors</button>
-          <button data-v="1" aria-pressed="false">Industry groups</button>
+          <button data-v="1" aria-pressed="false" class="l2name">Industries</button>
         </div>
       </div>
     </div>
@@ -150,7 +150,7 @@ table.m-all .splitbar{width:50px}
 
   <div class="card">
     <div class="tbl-head">
-      <h2>Sector › Industry group › Company</h2>
+      <h2 id="tblTitle">Sector › Industry › Company</h2>
       <button class="btn" id="csv">Download CSV</button>
     </div>
     <div class="row">
@@ -163,10 +163,17 @@ table.m-all .splitbar{width:50px}
       </div>
     </div>
     <div class="row">
+      <span class="lbl">Level 2</span>
+      <div class="seg" id="l2">
+        <button data-v="i" aria-pressed="true">Industry</button>
+        <button data-v="g" aria-pressed="false">Industry group</button>
+      </div>
+    </div>
+    <div class="row">
       <span class="lbl">Expand to</span>
       <div class="seg" id="depth">
         <button data-v="0">Sectors</button>
-        <button data-v="1">Industry groups</button>
+        <button data-v="1" class="l2name">Industries</button>
         <button data-v="2">Companies</button>
       </div>
       <select id="member" aria-label="Filter companies by index membership">
@@ -214,8 +221,9 @@ const MODES = {
 let D, A, tree, all = [], state = {
   mode: window.innerWidth < 760 ? "vs" : "all",
   sort: "w:sp500", dir: -1, open: new Set(), q: "", member: "all",
-  chartMode: "w", chartLevel: 0
+  chartMode: "w", chartLevel: 0, l2: "i"
 };
+const L2 = {i:{one:"Industry", many:"Industries", lc:"industries"}, g:{one:"Industry group", many:"Industry groups", lc:"groups"}};
 
 const fmtW = v => v === 0 ? "—" : v < 0.01 ? "<0.01" : v.toFixed(2);
 const fmtD = v => Math.abs(v) < 0.005 ? "0.00" : (v > 0 ? "+" : "−") + Math.abs(v).toFixed(2);
@@ -224,12 +232,15 @@ const vshare = n => { const v = A * n.value, g = (1 - A) * n.growth; return v + 
 const diff = (n, k) => n[DIFFS[k].a] - n[DIFFS[k].b];
 
 function build(){
+  all = [];
   const secs = new Map();
+  const K = state.l2;
   for (const c of D.companies){
     if (!secs.has(c.s)) secs.set(c.s, {id:"s:"+c.s, name:c.s, level:0, kids:new Map()});
     const s = secs.get(c.s);
-    if (!s.kids.has(c.g)) s.kids.set(c.g, {id:"g:"+c.s+"|"+c.g, name:c.g, level:1, sector:c.s, kids:[]});
-    s.kids.get(c.g).kids.push({id:"c:"+c.t, name:c.n, t:c.t, si:c.si, level:2, sector:c.s, group:c.g,
+    const gk = c[K];
+    if (!s.kids.has(gk)) s.kids.set(gk, {id:"g:"+c.s+"|"+gk, name:gk, level:1, sector:c.s, kids:[]});
+    s.kids.get(gk).kids.push({id:"c:"+c.t, name:c.n, t:c.t, si:c.si, level:2, sector:c.s, group:gk,
       sp500:c.sp500, value:c.value, growth:c.growth});
   }
   const roll = n => {
@@ -340,10 +351,15 @@ function nameCell(n){
     return `<td><div class="nm"><span class="tw"></span><span class="tx"><span class="tk">${esc(n.t)}</span>${esc(n.name)}<span class="si">${esc(n.si || "")}</span></span></div></td>`;
   }
   const open = state.open.has(n.id) || (state.q && filtering());
-  const ct = n.level === 0 ? `${n.kids.length} groups · ${n.count} cos` : `${n.count} cos`;
+  const ct = n.level === 0 ? `${n.kids.length} ${L2[state.l2].lc} · ${n.count} cos` : `${n.count} cos`;
   return `<td><div class="nm"><span class="tw">${open ? "▼" : "▶"}</span><span class="tx">${esc(n.name)}<span class="ct">${ct}</span></span></div></td>`;
 }
 
+function syncL2(){
+  document.querySelectorAll("#l2 button").forEach(x => x.setAttribute("aria-pressed", String(x.dataset.v === state.l2)));
+  document.querySelectorAll(".l2name").forEach(x => x.textContent = L2[state.l2].many);
+  $("#tblTitle").textContent = `Sector › ${L2[state.l2].one} › Company`;
+}
 function renderTable(){
   const cols = MODES[state.mode];
   const head = `<tr><th data-k="name">Name</th>${cols.map(colHead).join("")}</tr>`;
@@ -359,7 +375,7 @@ function renderTable(){
   const fn = $("#filterNote");
   if (filtering()){
     fn.style.display = "block";
-    fn.textContent = "Filter is on: sector and industry group rows still show their full weights, not just the companies listed.";
+    fn.textContent = "Filter is on: sector and level-2 rows still show their full weights, not just the companies listed.";
   } else fn.style.display = "none";
   ["mode","depth"].forEach(id => document.querySelectorAll(`#${id} button`).forEach(b => {
     b.setAttribute("aria-pressed", id === "mode" ? String(b.dataset.v === state.mode) : "false");
@@ -379,13 +395,14 @@ function renderChart(){
   const nodes = all.filter(n => n.level === lvl).sort((a,b) => b.sp500 - a.sp500);
   const series = mode === "w" ? ["sp500","value","growth"] : ["value","growth"];
   const val = (n, f) => mode === "w" ? n[f] : n[f] - n.sp500;
-  $("#chartTitle").textContent = (lvl ? "Industry group " : "Sector ") + (mode === "w" ? "weights" : "difference vs S&P 500");
+  $("#chartTitle").textContent = (lvl ? L2[state.l2].one + " " : "Sector ") + (mode === "w" ? "weights" : "difference vs S&P 500");
   $("#chartLegend").innerHTML = series.map(f => `<span><i class="sw" style="background:${COLOR[f]}"></i>${mode==="w"?F[f]:F[f]+" − S&P 500"}</span>`).join("")
     + `<span style="color:var(--muted)">${mode==="w"?"weight %":"percentage points"}${lvl?" · sorted by S&P 500 weight":""}</span>`;
   const el = $("#chart"), W = el.clientWidth || 800;
   const narrow = W < 560;
   const labW = narrow ? (lvl ? 150 : 118) : (lvl ? 290 : 170);
-  const bh = mode === "w" ? (lvl ? 5 : 7) : (lvl ? 6 : 9), gap = 2, pad = lvl ? 8 : 12;
+  const many = nodes.length > 40;
+  const bh = mode === "w" ? (lvl ? (many ? 4 : 5) : 7) : (lvl ? (many ? 5 : 6) : 9), gap = 2, pad = lvl ? (many ? 6 : 8) : 12;
   const rowH = series.length * bh + (series.length - 1) * gap + pad;
   const top = 18, H = top + nodes.length * rowH + 6;
   const vals = nodes.flatMap(n => series.map(f => val(n, f)));
@@ -402,9 +419,10 @@ function renderChart(){
   }
   nodes.forEach((n, i) => {
     const y = top + i * rowH + pad / 2;
-    const name = narrow && n.name.length > (lvl ? 22 : 17) ? n.name.slice(0, lvl ? 21 : 16) + "…" : n.name;
+    const maxc = Math.floor(labW / 6.6);
+    const name = n.name.length > maxc ? n.name.slice(0, maxc - 1).trimEnd() + "…" : n.name;
     s += `<g class="hit" data-id="${esc(n.id)}"><rect x="0" y="${y - pad/2}" width="${W}" height="${rowH}" fill="transparent"/>`;
-    s += `<text x="${labW}" y="${y + (rowH - pad)/2 + 4}" text-anchor="end">${esc(name)}</text>`;
+    s += `<text x="${labW}" y="${y + (rowH - pad)/2 + 4}" text-anchor="end"><title>${esc(n.name)}</title>${esc(name)}</text>`;
     series.forEach((f, j) => {
       const yy = y + j * (bh + gap);
       s += `<path d="${barPath(X(0), X(val(n, f)), yy, bh)}" fill="${COLOR[f]}"/>`;
@@ -454,14 +472,14 @@ function jumpTo(n){
 
 // ------------------------------------------------------------ CSV
 function csv(){
-  const lines = [["Level","Sector","Industry group","Ticker","Company","GICS sub-industry","S&P 500 wt %","Value wt %","Growth wt %","Value - S&P 500 pp","Growth - S&P 500 pp","Growth - Value pp","Value share of cap %"]];
+  const lines = [["Level","Sector",L2[state.l2].one,"Ticker","Company","GICS sub-industry","S&P 500 wt %","Value wt %","Growth wt %","Value - S&P 500 pp","Growth - S&P 500 pp","Growth - Value pp","Value share of cap %"]];
   for (const s of sorted(tree)){
     const row = (n, lvl, sec, grp) => [lvl, sec, grp, n.t || "", n.level===2 ? n.name : "", n.si || "",
       n.sp500.toFixed(4), n.value.toFixed(4), n.growth.toFixed(4), diff(n,"vs").toFixed(4), diff(n,"gs").toFixed(4), diff(n,"gv").toFixed(4),
       vshare(n) === null ? "" : (vshare(n)*100).toFixed(1)];
     lines.push(row(s, "Sector", s.name, ""));
     for (const g of sorted(s.kids)){
-      lines.push(row(g, "Industry group", s.name, g.name));
+      lines.push(row(g, L2[state.l2].one, s.name, g.name));
       for (const c of sorted(g.kids)) lines.push(row(c, "Company", s.name, g.name));
     }
   }
@@ -488,7 +506,7 @@ function renderHeader(){
   ].map(([k,v,d,c]) => `<div class="tile"><div class="k">${c?`<i class="sw" style="background:${c}"></i>`:""}${k}</div><div class="v">${v}</div><div class="d">${d}</div></div>`).join("");
   $("#notes").innerHTML = `
     <p><b>Data.</b> Holdings and weights come from State Street's daily holdings files for SPY (S&amp;P 500), SPYV (S&amp;P 500 Value) and SPYG (S&amp;P 500 Growth). These are the same indices VOOV and VOOG track. Cash, money market and non-equity lines are excluded, and each fund's stock weights are rescaled to 100% (raw stock weight before rescaling: SPY ${D.rawEquityWeight.sp500}%, SPYV ${D.rawEquityWeight.value}%, SPYG ${D.rawEquityWeight.growth}%). Fund weights track the index closely but can differ slightly around rebalances.</p>
-    <p><b>Classification.</b> Each company's GICS sector and industry group comes from its GICS sub-industry as listed on Wikipedia's S&amp;P 500 constituents table, mapped through the GICS hierarchy. Share classes (e.g. GOOGL and GOOG) are shown as separate lines.</p>
+    <p><b>Classification.</b> Same as the companion returns page: GICS sub-industry per company from Wikipedia's S&amp;P 500 constituents table, mapped through the GICS hierarchy, with the same manual overrides. Level 2 switches between GICS industry (the level shown in a Bloomberg sector › industry tree) and GICS industry group (25 groups). Share classes (e.g. GOOGL and GOOG) are shown as separate lines.</p>
     <p><b>Differences</b> are in percentage points: a positive Value − S&amp;P 500 figure means the sector, group or company is a larger share of the Value index than of the S&amp;P 500.</p>
     <p><b>Value / Growth split.</b> S&amp;P divides each company's float-adjusted market cap between the Value and Growth indices. The S&amp;P 500 weight equals a × Value weight + (1 − a) × Growth weight, where a is Value's share of total S&amp;P 500 cap (currently ${(A*100).toFixed(2)}%, solved from the holdings). The split column applies that to show how much of each company's or group's cap sits in each style index.</p>
     <p>The data refreshes automatically each weekday evening. Companion page: <a href="../" style="color:var(--s1)">S&amp;P 500 price returns and breadth</a>. Source: <a href="https://github.com/jcheels1/SP500-returns/tree/main/style-weights" style="color:var(--s1)">github.com/jcheels1/SP500-returns</a>.</p>`;
@@ -514,6 +532,13 @@ function bind(){
   $("#member").addEventListener("change", e => { state.member = e.target.value;
     if (state.member !== "all") state.open = new Set(all.filter(n => n.level < 2).map(n => n.id)); renderTable(); });
   $("#csv").addEventListener("click", csv);
+  $("#l2").addEventListener("click", e => { const b = e.target.closest("button"); if (!b || b.dataset.v === state.l2) return;
+    const wasOpen = new Set([...state.open].filter(id => id.startsWith("s:")));
+    const grpsOpen = [...state.open].some(id => id.startsWith("g:"));
+    state.l2 = b.dataset.v; build(); SC = scales();
+    state.open = wasOpen;
+    if (grpsOpen) all.filter(n => n.level === 1 && wasOpen.has("s:" + n.sector)).forEach(n => state.open.add(n.id));
+    syncL2(); renderTable(); renderChart(); });
   $("#chartMode").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.chartMode = b.dataset.v;
     document.querySelectorAll("#chartMode button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); renderChart(); });
   $("#chartLevel").addEventListener("click", e => { const b = e.target.closest("button"); if (!b) return; state.chartLevel = +b.dataset.v;
@@ -524,7 +549,7 @@ function bind(){
 
 fetch("data/holdings.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
   D = d; A = d.valueCapShare; build(); SC = scales();
-  renderHeader(); bind(); renderTable(); renderChart();
+  renderHeader(); bind(); syncL2(); renderTable(); renderChart();
 }).catch(err => { $("#sub").textContent = "Could not load data: " + err; });
 })();
 </script>

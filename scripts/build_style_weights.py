@@ -153,6 +153,20 @@ def load_classification():
         return json.loads(CLASS_CACHE.read_text()), None
 
 
+def load_returns_classification():
+    """Classification used by the returns page (data.json), so both pages nest identically."""
+    p = ROOT / "data.json"
+    if not p.exists():
+        return {}
+    out = {}
+    for r in json.loads(p.read_text()).get("rows", []):
+        if r.get("sector") and r.get("industry_group") not in (None, "Unclassified"):
+            out[norm_ticker(r["ticker"])] = {"name": r.get("name"), "sector": r["sector"],
+                                             "group": r["industry_group"], "industry": r.get("industry"),
+                                             "sub": r.get("sub_industry")}
+    return out
+
+
 # ---------------------------------------------------------------- main
 def main():
     data, as_of_dates, raw_totals = {}, {}, {}
@@ -162,6 +176,9 @@ def main():
         print(f"{tkr}: {len(rows)} equity lines, raw equity weight {total:.3f}%, as of {as_of}")
 
     cls, _ = load_classification()
+    returns_cls = load_returns_classification()
+    print(f"returns-page classification: {len(returns_cls)} tickers")
+    cls = {**cls, **returns_cls}  # returns page wins where both exist
 
     # group-name fallback by sector when a sub-industry did not map
     companies = {}
@@ -176,11 +193,12 @@ def main():
         if k and k.get("name"):
             c["n"] = k["name"]
         if k and k.get("group"):
-            c["s"], c["g"], c["i"], c["si"] = k["sector"], k["group"], k.get("industry"), k.get("sub")
+            c["s"], c["g"], c["si"] = k["sector"], k["group"], k.get("sub")
+            c["i"] = k.get("industry") or k.get("sub") or k["group"]
         else:
             c["s"] = (k or {}).get("sector") or "Unclassified"
-            c["g"] = "Unclassified"
-            c["i"] = c["si"] = None
+            c["g"] = c["i"] = "Unclassified"
+            c["si"] = None
             unclassified.append(t)
         for f in ("sp500", "value", "growth"):
             c[f] = round(c[f], 6)
@@ -201,6 +219,8 @@ def main():
     problems = []
     if not 495 <= len(data["sp500"]) <= 510: problems.append(f"S&P 500 has {len(data['sp500'])} lines")
     if len(data["value"]) < 300 or len(data["growth"]) < 100: problems.append("style index line counts too low")
+    missing_ind = [t for t, c in companies.items() if not c["i"]]
+    if missing_ind: problems.append(f"no industry for {missing_ind}")
     if len(unclassified) > 5: problems.append(f"{len(unclassified)} unclassified: {unclassified}")
     if resid > 0.05: problems.append(f"S&P 500 weights do not reconcile to Value/Growth (max residual {resid:.3f})")
     if len(set(as_of_dates.values())) > 1: print(f"NOTE: as-of dates differ: {as_of_dates}")
