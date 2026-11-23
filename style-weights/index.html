@@ -94,6 +94,18 @@ table.m-all .dbar{width:46px}
 table.m-all .splitbar{width:50px}
 .notes{font-size:12px;color:var(--ink2)}
 .notes p{margin:6px 0}
+.hdr{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.hdr .btn{flex:none}
+#rf{display:none;margin-bottom:16px}
+#rf.on{display:block}
+#rf .st{font-size:13px;margin:0 0 8px}
+#rf .st.err{color:var(--neg)}
+#rf .help{font-size:12px;color:var(--ink2);margin:8px 0 0}
+#rf .help ol{margin:4px 0 0;padding-left:18px}
+#rf input[type=password]{border:1px solid var(--border);background:var(--chip);color:var(--ink);font:inherit;font-size:13px;padding:6px 10px;border-radius:8px;flex:1;min-width:0;max-width:360px}
+#rf a{color:var(--s1)}
+.btn.primary{background:var(--chip-on);color:var(--chip-on-ink);border-color:var(--chip-on)}
+.btn:disabled{opacity:.5;cursor:default}
 #tip{position:fixed;pointer-events:none;background:var(--surface);color:var(--ink);border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-size:12px;box-shadow:0 4px 16px rgba(0,0,0,.12);display:none;z-index:10;min-width:180px}
 #tip .t{font-weight:650;margin-bottom:4px}
 #tip .r{display:flex;justify-content:space-between;gap:14px;font-variant-numeric:tabular-nums}
@@ -125,8 +137,33 @@ table.m-all .splitbar{width:50px}
 </head>
 <body>
 <div class="wrap">
-  <h1>S&amp;P 500 vs S&amp;P 500 Value vs S&amp;P 500 Growth</h1>
-  <p class="sub" id="sub">Loading…</p>
+  <div class="hdr">
+    <div>
+      <h1>S&amp;P 500 vs S&amp;P 500 Value vs S&amp;P 500 Growth</h1>
+      <p class="sub" id="sub">Loading…</p>
+    </div>
+    <button class="btn" id="rfBtn">Refresh data</button>
+  </div>
+  <div class="card" id="rf">
+    <p class="st" id="rfSt"></p>
+    <div class="row" id="rfTokRow">
+      <input type="password" id="rfTok" placeholder="Paste GitHub token" autocomplete="off" aria-label="GitHub token">
+      <button class="btn primary" id="rfSave">Save &amp; refresh</button>
+    </div>
+    <div class="row" id="rfActRow">
+      <button class="btn primary" id="rfGo">Run refresh</button>
+      <a href="#" id="rfForget" style="font-size:12px">Forget token</a>
+    </div>
+    <div class="help" id="rfHelp">
+      One-time setup. The token is stored only in this browser and sent only to api.github.com.
+      <ol>
+        <li>On GitHub: Settings → Developer settings → Fine-grained tokens → <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Generate new token</a>.</li>
+        <li>Repository access: only <b>jcheels1/SP500-returns</b>. Permissions: <b>Actions: Read and write</b>.</li>
+        <li>Paste the token above.</li>
+      </ol>
+      Or run it without a token: <a href="https://github.com/jcheels1/SP500-returns/actions/workflows/refresh-style-weights.yml" target="_blank" rel="noopener">open the workflow on GitHub</a> → Run workflow.
+    </div>
+  </div>
 
   <div class="tiles" id="tiles"></div>
 
@@ -547,9 +584,81 @@ function bind(){
   matchMedia("(prefers-color-scheme: dark)").addEventListener?.("change", renderChart);
 }
 
-fetch("data/holdings.json", {cache:"no-cache"}).then(r => r.json()).then(d => {
+// ------------------------------------------------------------ refresh (GitHub Actions)
+const GH = {repo:"jcheels1/SP500-returns", wf:"refresh-style-weights.yml", key:"styleWeightsGhToken"};
+const tokGet = () => { try { return localStorage.getItem(GH.key) || ""; } catch(e) { return ""; } };
+const tokSet = v => { try { v ? localStorage.setItem(GH.key, v) : localStorage.removeItem(GH.key); } catch(e) {} };
+const sleep = ms => new Promise(r => setTimeout(r, ms));
+let rfBusy = false;
+function rfStatus(msg, err){ const e = $("#rfSt"); e.textContent = msg; e.className = "st" + (err ? " err" : ""); }
+function rfPanel(){
+  const has = !!tokGet();
+  $("#rfTokRow").style.display = has ? "none" : "flex";
+  $("#rfActRow").style.display = has ? "flex" : "none";
+  $("#rfHelp").style.display = has ? "none" : "block";
+  if (!rfBusy) rfStatus(has ? `Holdings as of ${D.asOf.sp500}. Runs the GitHub refresh job (about 1 minute), then reloads.` : "Refresh needs a GitHub token once.");
+}
+async function gh(path, opts = {}){
+  const r = await fetch("https://api.github.com/repos/" + GH.repo + path, {...opts, headers:{
+    "Accept":"application/vnd.github+json", "Authorization":"Bearer " + tokGet(), "X-GitHub-Api-Version":"2022-11-28", ...(opts.headers||{})}});
+  if (r.status === 401 || r.status === 403 || r.status === 404) throw new Error(`GitHub refused the request (${r.status}). Check the token has Actions read/write on SP500-returns.`);
+  if (!r.ok) throw new Error(`GitHub error ${r.status}`);
+  return r.status === 204 ? null : r.json();
+}
+async function loadData(bust){
+  const r = await fetch("data/holdings.json" + (bust ? "?t=" + Date.now() : ""), {cache:"no-cache"});
+  return r.json();
+}
+async function runRefresh(){
+  if (rfBusy) return; rfBusy = true;
+  $("#rfGo").disabled = true; $("#rfBtn").disabled = true;
+  try {
+    const t0 = new Date(Date.now() - 5000).toISOString().replace(/\.\d+Z$/, "Z");
+    rfStatus("Starting refresh job…");
+    await gh(`/actions/workflows/${GH.wf}/dispatches`, {method:"POST", body:JSON.stringify({ref:"main"}), headers:{"Content-Type":"application/json"}});
+    let run = null;
+    for (let i = 0; i < 90; i++){
+      await sleep(4000);
+      const r = await gh(`/actions/workflows/${GH.wf}/runs?event=workflow_dispatch&per_page=1&created=%3E%3D${encodeURIComponent(t0)}`);
+      run = r.workflow_runs[0];
+      if (!run) { rfStatus("Waiting for GitHub to start the job…"); continue; }
+      if (run.status === "completed") break;
+      rfStatus(`Job ${run.status.replace("_"," ")}… (${Math.round((Date.now() - Date.parse(t0)) / 1000)}s)`);
+    }
+    if (!run || run.status !== "completed") throw new Error("The job is taking longer than expected. Check GitHub Actions.");
+    if (run.conclusion !== "success") throw new Error(`The job ended with "${run.conclusion}". Most likely a holdings file failed the checks; see the run log on GitHub.`);
+    const commits = await (await fetch(`https://api.github.com/repos/${GH.repo}/commits?path=style-weights/data/holdings.json&per_page=1`)).json();
+    const changed = commits[0] && Date.parse(commits[0].commit.committer.date) >= Date.parse(t0);
+    if (!changed){ rfStatus(`Already up to date: State Street has not posted holdings newer than ${D.asOf.sp500}.`); return; }
+    rfStatus("New holdings committed. Waiting for the site to republish…");
+    const before = D.generated;
+    for (let i = 0; i < 45; i++){
+      await sleep(5000);
+      const d = await loadData(true);
+      if (d.generated !== before){
+        D = d; A = d.valueCapShare; build(); SC = scales();
+        renderHeader(); renderTable(); renderChart();
+        rfStatus(`Updated: holdings as of ${D.asOf.sp500}.`);
+        return;
+      }
+    }
+    rfStatus("Data was committed but the site has not republished yet. Reload the page in a minute.");
+  } catch(e) {
+    rfStatus(e.message, true);
+  } finally {
+    rfBusy = false; $("#rfGo").disabled = false; $("#rfBtn").disabled = false;
+  }
+}
+function bindRefresh(){
+  $("#rfBtn").addEventListener("click", () => { const p = $("#rf"); p.classList.toggle("on"); if (p.classList.contains("on")) rfPanel(); });
+  $("#rfSave").addEventListener("click", () => { const v = $("#rfTok").value.trim(); if (!v) return; tokSet(v); $("#rfTok").value = ""; rfPanel(); runRefresh(); });
+  $("#rfGo").addEventListener("click", runRefresh);
+  $("#rfForget").addEventListener("click", e => { e.preventDefault(); tokSet(""); rfPanel(); });
+}
+
+loadData(false).then(d => {
   D = d; A = d.valueCapShare; build(); SC = scales();
-  renderHeader(); bind(); syncL2(); renderTable(); renderChart();
+  renderHeader(); bind(); bindRefresh(); syncL2(); renderTable(); renderChart();
 }).catch(err => { $("#sub").textContent = "Could not load data: " + err; });
 })();
 </script>
